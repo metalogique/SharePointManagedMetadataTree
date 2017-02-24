@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="Displays the metadata taxonmy associated with a list column as xml. Optionally the xml can then be transformed via xsl." Id="cb3eda9e-70c4-4523-9b32-ab44d38bdeb2" Scope="Site" Title="Taxonomy WebPart Feature">
+  <ElementManifests>
+    <ElementManifest Location="Taxonomy_WebPart\Elements.xml" />
+    <ElementFile Location="Taxonomy_WebPart\Taxonomy_WebPart.webpart" />
+  </ElementManifests>
+</Feature>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Taxonomy_WebPart.Taxonomy_WebPart.Taxonomy_WebPart, Taxonomy_WebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6d7c436259cd8778" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Taxonomy WebPart</property>
+        <property name="Description" type="string">Used to display items from a Taxonomy</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
