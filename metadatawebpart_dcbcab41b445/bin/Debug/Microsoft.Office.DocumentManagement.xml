@@ -1,0 +1,1588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Office.DocumentManagement</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Office.DocumentManagement.DocIdLookup">
+      <summary>Provides a way locate a document or collection of documents based on Document ID. </summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocIdLookup.#ctor">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.DocumentManagement.DocIdLookup" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocIdLookup.DoSearch(Microsoft.SharePoint.SPSite,System.String)">
+      <summary>Returns an array of URLs that point to documents with the specified <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object.</summary>
+      <returns>A string array of URLs that point to documents that are associated with the specified <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /></returns>
+      <param name="site">An <see cref="T:Microsoft.SharePoint.SPSite" /> object that specifies the site in which to search for documents with the provided <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object</param>
+      <param name="docId"> A string that specifies the <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocIdLookup.GetSearchScope(Microsoft.SharePoint.SPSite)">
+      <summary>Gets the search scope used by the built-in search provider.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+      <param name="site">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object that specifies the site for which to get the search scope</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocIdLookup.SetSearchScope(Microsoft.SharePoint.SPSite,System.String)">
+      <summary>Sets the search scope to be used by the default search provider.</summary>
+      <param name="site">An <see cref="T:Microsoft.SharePoint.SPSite" /> object that specifies the site for which to set the search scope</param>
+      <param name="scope">A string that specifies the search scope</param>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentId">
+      <summary>Represents a Document ID.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.EnableAssignment(Microsoft.SharePoint.SPSite,System.Boolean)">
+      <summary>Enables or disables the ability to assign <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> to a <see cref="T:Microsoft.SharePoint.SPSite" /> object.</summary>
+      <param name="site">true if it enables <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> assignment; otherwise, false</param>
+      <param name="fEnable">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object on which to enable or disable the assignment of a <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object</param>
+      <exception cref="T:System.ArgumentException">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object or its root <see cref="T:Microsoft.SharePoint.SPWeb" /> object properties are set to null.</exception>
+      <exception cref="T:System.InvalidOperationException">The Document ID feature is not activated for the target <see cref="T:Microsoft.SharePoint.SPSite" /> object.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.EnableAssignment(Microsoft.SharePoint.SPSite,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>Enables or disables <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects assigned on a <see cref="T:Microsoft.SharePoint.SPSite" /> site.</summary>
+      <param name="site">true if it enables assigning <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects; otherwise, false.</param>
+      <param name="fEnable">Site on which to enable or disable the ability to assign <see cref="T:Microsoft.Office.DocumentManagement.DocumentID" /> objects.</param>
+      <param name="fScheduleAssignment">true if overwriting existing <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects is permitted; otherwise, false</param>
+      <param name="fOverwriteExistingIds">true if it schedules the timer job; otherwise, false</param>
+      <exception cref="T:System.ArgumentException">The <see cref="T:Microsoft.SharePoint.SPSite" /> object value or the properties of its root <see cref="T:Microsoft.SharePoint.SPWeb" /> object are set to null.</exception>
+      <exception cref="T:System.InvalidOperationException">The Document ID feature is not activated on the target <see cref="T:Microsoft.SharePoint.SPSite" /> object.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.EnableAssignment(Microsoft.SharePoint.SPSite,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>Enables or disables the assignment of <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects on the specified <see cref="T:Microsoft.SharePoint.SPSite" /> object.</summary>
+      <param name="site">true if it enables the assignment of <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects; otherwise false</param>
+      <param name="prefix">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object on which to enable or disable the assignment of <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object</param>
+      <param name="fEnable">true if overwriting existing <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects is allowed; otherwise, false</param>
+      <param name="fScheduleAssignment">true if the assignment timer job can be scheduled; othrewise, false</param>
+      <param name="fOverwriteExistingIds">String used as a prefix for a <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object.</param>
+      <param name="fDocsetCtUpdateOnly">true if the enable assignment operation applies only to Document Set content types; otherwise, false.</param>
+      <exception cref="T:System.ArgumentException">The <see cref="T:Microsoft.SharePoint.SPSite" /> object or the properties of its root <see cref="T:Microsoft.SharePoint.SPWeb" /> object are set to null.</exception>
+      <exception cref="T:System.InvalidOperationException">The Document ID feature is not activated on the target <see cref="T:Microsoft.SharePoint.SPSite" /> object.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.FindUrlById(Microsoft.SharePoint.SPSite,System.String,System.String)">
+      <summary>Finds the URL of a document with the specified <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> value and <paramref name="versionLabel" /> parameter value.</summary>
+      <returns>URL of the document as a String. null if the document is not found, or if more than one document is found</returns>
+      <param name="site">ID to search for</param>
+      <param name="docId">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object to search on</param>
+      <param name="versionLabel">Version of the label of the document for which to get the URL</param>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object value is set to null.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.FindUrlsById(Microsoft.SharePoint.SPSite,System.String)">
+      <summary> Finds the URLs of a document and all of its versions with a specified Id.</summary>
+      <returns>Array of strings that represents the URLs of all versions of the document found with the specified <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> value.</returns>
+      <param name="site">ID to search for.</param>
+      <param name="docId">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object to search on.</param>
+      <exception cref="T:System.ArgumentNullException">The <see cref="T:Microsoft.SharePoint.SPSite" /> object value is set to null.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.GetProvider(Microsoft.SharePoint.SPSite)">
+      <summary>Gets the value of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> object for a specified <see cref="T:Microsoft.SharePoint.SPSite" /> object.</summary>
+      <returns>A <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> object for the specified <see cref="T:Microsoft.SharePoint.SPSite" /> object, or null if no object of that type is returned.</returns>
+      <param name="site">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object from which to get the <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> value.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object value is set to null.
+</exception>
+      <exception cref="T:System.NullReferenceException">There was a problem loading a custom provider.</exception>
+      <exception cref="T:System.Runtime.InteropServices.SEHException">There was a problem loading a custom provider.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.IsAssignmentEnabled(Microsoft.SharePoint.SPSite)">
+      <summary>Determines whether the <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object assignment is enabled on a <see cref="T:Microsoft.SharePoint.SPSite" /> object.</summary>
+      <returns>true if assignment is enabled; otherwise false.</returns>
+      <param name="site">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object to test for <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object assignment.</param>
+      <exception cref="T:System.ArgumentException">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object orthe properties of its root <see cref="T:Microsot.SharePoint.SPWeb" /> properties are set to null.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.IsAssignmentEnabled(Microsoft.SharePoint.SPWeb)">
+      <summary>Checks whether the ability to assign <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object values is enabled on a <see cref="T:Microsoft.SharePoint.SPWeb" /> object.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+      <param name="web">
+        <see cref="T:Microsoft.SharePoint.SPWeb" /> object to test for <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object assignment.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.IsFeatureEnabled(Microsoft.SharePoint.SPSite)">
+      <summary>Gets the feature status in the specified <see cref="T:Microsoft.SharePoint.SPSite" /> collection.</summary>
+      <returns>true if the Document ID feature is enabled; otherwise false.</returns>
+      <param name="site">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> collection that  is checked</param>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> is set to null.</exception>
+      <exception cref="T:System.ArgumentException">Site Features collection is set to null.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.SetDefaultProvider(Microsoft.SharePoint.SPSite)">
+      <summary>Resets the <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> value of a <see cref="T:Microsoft.SharePoint.SPSite" /> to its default value.</summary>
+      <param name="site">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object on which to reset the <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> value</param>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> is set to null</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentId.SetProvider(Microsoft.SharePoint.SPSite,Microsoft.Office.DocumentManagement.DocumentIdProvider)">
+      <summary>Sets a new <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> value for the specified <see cref="T:Microsoft.SharePoint.SPSite" /> object.</summary>
+      <param name="site">
+        <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> object that is the provider of <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> objects for the <see cref="T:Microsoft.SharePoint.SPSite" /> object</param>
+      <param name="iProvider">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object on which to set the <paramref name="iProvider" /> parameter value</param>
+      <exception cref="T:System.ArgumentNullException">Either the <see cref="T:Microsoft.SharePoint.SPSite" /> object value or the value of the new <paramref name="iProvider" /> parameter is set to null.</exception>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentIdProvider">
+      <summary>Represents the base abstract class for implementing a Document ID generator.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentIdProvider.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentIdProvider" /> object.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentIdProvider.DoCustomSearchBeforeDefaultSearch">
+      <summary>Gets a Boolean value specifying whether the current instance of the provider custom search method (<see cref="M:Microsoft.Office.DocumentManagement.DocumentIdProvider.GetDocumentUrlsById" />) should be called before built-in search is called when the user is trying to locate a document by its <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> value.</summary>
+      <returns>true if the provider custom search method (GetDocumentUrlsById) should be called before built-in search; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentIdProvider.GenerateDocumentId(Microsoft.SharePoint.SPListItem)">
+      <summary>Generates a document ID when provided with a list item parameter that corresponds to a document.</summary>
+      <returns>A string that represents the newly generated Document ID.</returns>
+      <param name="listItem">An <see cref="T:Microsoft.SharePoint.SPListItem" /> object that specifies the item for which a document ID must be generated.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentIdProvider.GetDocumentUrlsById(Microsoft.SharePoint.SPSite,System.String)">
+      <summary>Implements a custom search method; returns an array of URLs pointing to documents with a specified <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> value.</summary>
+      <returns>A string arrays of URLs pointing to documents with the specified Document ID.</returns>
+      <param name="site">
+        <see cref="T:Microsoft.SharePoint.SPSite" /> object that specifies the site in which to search for documents with the provided <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object.</param>
+      <param name="documentId">A <see cref="T:Microsoft.SharePoint.SPSite" /> object that specifies the site in which to search for documents with the provided <see cref="T:Microsoft.Office.DocumentManagement.DocumentId" /> object. </param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentIdProvider.GetSampleDocumentIdText(Microsoft.SharePoint.SPSite)">
+      <summary>Returns the default Document ID value that will be initially displayed in the Document ID search web part.</summary>
+      <returns>A string representing the default Document ID value that will be initially displayed in the Document ID search web part.</returns>
+      <param name="site">An <see cref="T:Microsoft.SharePoint.SPSite" /> object that specifies the site in which the web part is located.</param>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException">
+      <summary>Represents a message indicating that the system has determined that the <see cref="T:Microsoft.Office.DocumentManagement.lDocumentIdProvider" /> object is invalid.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException.#ctor">
+      <summary>Initializes a new instance of an <see cref="Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of an <see cref="T:Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException" /> object.</summary>
+      <param name="si">Object of type T:System.Runtime.Serialization.SerializationInfo</param>
+      <param name="sc">Object of type T:System.Runtime.Serialization.StreamingContext</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException.#ctor(System.String)">
+      <summary>Initializes a new instance of an <see cref="T:Microsoft.Office.DocumentManagement.InvalidDocumentIdProviderException" /> object.</summary>
+      <param name="message">Object of type T: System.String</param>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataDefaults">
+      <summary>Provides a way to set and get default values for fields based on where the document is added.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.#ctor(Microsoft.SharePoint.SPList)">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.DocumentManagement.MetadataDefaults(Microsoft.SharePoint.SPList)" /> object.</summary>
+      <param name="list">The Document Library that the specified <see cref="T:Microsoft.Office.DocumentManagement.MetadataDefault" /> objects apply to</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="list" /> parameter is set to null. The <paramref name="list" /> parameter should be set to a value other than null.
+(ArgumentNullException.ParamName="list")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.#ctor(System.String,Microsoft.SharePoint.SPWeb)">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.DocumentManagement.MetadataDefaults(System.String,Microsoft.SharePoint.SPWeb)" /> object.</summary>
+      <param name="listPath">A server-relative URL to the Document Library for which the specified <see cref="T:Microsoft.Office.DocumentManagement.MetadataDefaults(System.String,Microsoft.SharePoint.SPWeb)" /> object sets metadata defaults</param>
+      <param name="currentWeb">The <see cref="T:Microsoft.SharePointSPWeb" /> object where the document library resides</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="listPath" /> parameter is set to null or set to String.Empty. The <paramref name="listPath" /> parameter should contain a server-relative URL that links to a document library(ArgumentNullException.ParamName="listPath")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.ApplyDefaults(Microsoft.SharePoint.SPListItem)">
+      <summary>Applies default values to a <see cref="T:Microsoft.SharePoint.SPListItem" /> object. </summary>
+      <returns>true if successful; otherwise false</returns>
+      <param name="item">Item to apply defaults to</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.GetDefaultMetadata(Microsoft.SharePoint.SPFolder)">
+      <summary>Gets the defaults for all field that have defaults for a specified folder.</summary>
+      <returns>All of the location-based field defaults set at the <paramref name="folder" /> parameter in an array of pairs</returns>
+      <param name="folder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> object to get default values for</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folder" /> parameter is set to null. The folder parameter should be a non-null <see cref="T:Microsoft.SharePoint.SPFolder" /> object representing a folder in the document library. (ArgumentNullException.ParamName="folder")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.GetDefaultMetadata(System.String)">
+      <summary>Gets the defaults for all fields in a specified <see cref="T:Microsoft.SharePoint.SPFolder" /> that have defaults.</summary>
+      <returns>All of the location-based field defaults set at <paramref name="folderPath" /> parameter in an array of pairs.</returns>
+      <param name="folderPath">The server-relative path of the folder to get defaults for</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folderPath" /> parameter is set to null or set to String.Empty. The <paramref name="folderPath" /> parameter should be a server-relative URL that links to a <see cref="T:Microsoft.SharePoint.SPFolder" /> object in the document library.
+(ArgumentNullException.ParamName="folderPath")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.GetFieldDefault(Microsoft.SharePoint.SPFolder,System.String)">
+      <summary>Gets the default value for a specified folder and field.</summary>
+      <returns>The default value set on the field indicated by the <paramref name="fieldName" /> parameter at the <paramref name="folder" /> location, or String.Empty if no metadata default is defined for the current <see cref="T:Microsoft.SharePoint.SPFolder" /> object.</returns>
+      <param name="folder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> object for which to get defaults</param>
+      <param name="fieldName">The internal name of the <see cref="T:Microsoft.SharePoint.SPField" /> object for the field to get the default for</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folder" /> parameter is set to null. The <paramref name="folder" /> parameter should be a non-null <see cref="T:Microsoft.SharePoint.SPFolder" /> object that represents a folder in the document library.
+(ArgumentNullException.ParamName="folder")</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="fieldName" /> parameter is set to null or set to String.Empty. The <paramref name="fieldName" /> parameter should be the internal name of a field on the document library.(ArgumentNullException.ParamName="fieldName")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.GetFieldDefault(System.String,System.String)">
+      <summary>Gets the default value for a specified field and folder.</summary>
+      <returns>The default value, or null if no metadata default is defined for the specified <see cref="T:Microsoft.SharePoint.SPFolder" /> object</returns>
+      <param name="folderPath">The server-relative path of the folder for which to get defaults</param>
+      <param name="fieldName">The internal name of the <see cref="T:Microsoft.SharePoint.SPField" /> object to get the default for</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folderPath" /> parameter is set to null or set to String.Empty. The <paramref name="folderPath" /> parameter should be a server-relative URL to a folder in the document library.(ArgumentNullException.ParamName="folderPath")</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="fieldName" /> parameter is set to null or set to String.Empty. The <paramref name="fieldName" /> parameter should be an internal name of a field on the document library.
+(ArgumentNullException.ParamName="fieldName")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.RemoveAllDefaults">
+      <summary>Removes all of the default values set on the document library.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.RemoveAllFieldDefaults(Microsoft.SharePoint.SPFolder)">
+      <summary>Removes all of the defaults set at a specified location.</summary>
+      <returns>true if successful; otherwise, false</returns>
+      <param name="folder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> from which to remove default values</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folder" /> parameter is set to null. The <paramref name="folder" /> parameter should be a non-null <see cref="T:Microsoft.SharePoint.SPFolder" /> object representing a folder in the document library.
+(ArgumentNullException.ParamName="folder")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.RemoveAllFieldDefaults(System.String)">
+      <summary>Removes all of the default values that are set at a specified location.</summary>
+      <returns>true if successful, otherwise, false</returns>
+      <param name="folderPath">The server-relative path to the location from which to remove the defaults</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folderPath" /> parameter is set to null or set to String.Empty. The <paramref name="folderPath" /> parameter should be a server-relative URL that links to a <see cref="T:Microsoft.SharePoint.SPFolder" /> in the document library.(ArgumentNullException.ParamName="folderPath")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.RemoveFieldDefault(Microsoft.SharePoint.SPFolder,System.String)">
+      <summary>Removes the default value of a <see cref="T:Microsoft.SharePoint.SPField" /> object at a specified <see cref="T:Microsoft.SharePoint.SPFolder" /> object.</summary>
+      <returns>true if successful;otherwise, false</returns>
+      <param name="folder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> object for which to remove the metadata default</param>
+      <param name="fieldName">The internal name of the <see cref="T:Microsoft.SharePoint.SPField" /> object for which to remove a default</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folder" /> parameter is set to null. The <paramref name="folder" /> parameter should be a non-null <see cref="T:Microsoft.SharePoint.SPFolder" /> object that represents a folder in the document library.
+(ArgumentNullException.ParamName="folder")</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="fieldName" /> parameter is set to null or set to String.Empty. The <paramref name="fieldName" /> parameter should be an internal name of a field on the document library.
+(ArgumentNullException.ParamName="fieldName")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.RemoveFieldDefault(System.String,System.String)">
+      <summary>Removes the default value of a field from an <see cref="T:Microsoft.SharePoint.SPFolder" /> object.</summary>
+      <returns>true if successful;otherwise, false</returns>
+      <param name="folderPath">The server-relative path that links to the <see cref="T:Microsoft.SharePoint.SPFolder" /> object from which to remove the default value.</param>
+      <param name="fieldName">The internal name of the <see cref="T:Microsoft.SharePoint.SPField" /> object from which to remove a default value.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folderPath" /> parameter is set to null or set to String.Empty. The <paramref name="folderPath" /> parameter should be a server-relative URL that links to a <see cref="T:Microsoft.SharePoint.SPFolder" /> object in the document library. 
+(ArgumentNullException.ParamName="folderPath")</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="fieldName" /> parameter is set to null or set to String.Empty. The <paramref name="fieldName" /> parameter should be an internal name of a <see cref="T:Microsoft.SharePoint.SPField" /> object on the document library.
+(ArgumentNullException.ParamName="fieldName")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.SetFieldDefault(Microsoft.SharePoint.SPFolder,System.String,System.String)">
+      <summary>Sets a default for a field at a location.</summary>
+      <returns>true if successful; otherwise, false</returns>
+      <param name="folder">
+        <see cref="T:Microsoft.SharePoint.SPFolder" /> location at which to set the default value</param>
+      <param name="fieldName">Internal name of the <see cref="T:Microsoft.SharePoint.SPField" /> object for which to set the default</param>
+      <param name="value">The default value</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folder" /> parameter is set to null. The <paramref name="folder" /> parameter should be a non-null <see cref="T:Microsoft.SharePoint.SPFolder" /> object that represents a folder in the document library.
+(ArgumentNullException.ParamName="folder")</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="fieldName" /> parameter is set to null or set to String.Empty. The <paramref name="fieldName" /> parameter should be an internal name of a field on the document library.
+(ArgumentNullException.ParamName="fieldName")</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is set to null or set to String.Empty. The <paramref name="value" /> parameter should be the default value that is applied to the specified <see cref="T:Microsoft.SharePoint.SPField" /> object on documents added to this folder.
+(ArgumentNullException.ParamName="value")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.SetFieldDefault(System.String,System.String,System.String)">
+      <summary>Sets a default value for a default field to apply to documents at a specified location.</summary>
+      <returns>true if successful; otherwise, false</returns>
+      <param name="folderPath">Server-relative path that links to the location at which to set the default</param>
+      <param name="fieldName">Internal name of the <see cref="T:Microsoft.SharePoint.SPField" /> object at which to set the default</param>
+      <param name="value">The default value</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="folderPath" /> parameter is set to null or set to String.Empty. The <paramref name="folderPath" /> parameter should be a server-relative URL that links to a <see cref="T:Microsoft.SharePoint.SPFolder" /> object in the document library.
+(ArgumentNullException.ParamName="folderPath")</exception>
+      <exception cref="T:System.ArgumentNullException">The fieldName parameter is set to null or set to String.Empty. The fieldName parameter should be an internal name of a field on the document library.
+(ArgumentNullException.ParamName="fieldName")
+</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is set to null or set to String.Empty. The <paramref name="value" /> parameter should be the default value that is applied to the specified <see cref="T:Microsoft.SharePoint.SPField" /> object on documents added to this folder.
+(ArgumentNullException.ParamName="value")</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataDefaults.Update">
+      <summary>Write changes to default values to the disk and adds or removes the appropriate event handlers.</summary>
+      <exception cref="T:System.ArgumentException">The document library for which the current <see cref="T:Microsoft.Office.DocumentManagement.MetadataDefaults" /> object is created for does not contain a Forms folder at the root of the library.</exception>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver">
+      <summary>Receives feature information about metadata navigation and filtering.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver.FeatureActivated(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver" /> object.</summary>
+      <param name="receiverProperties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver.FeatureDeactivating(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Triggered when a feature is deactivated on a specified object.</summary>
+      <param name="receiverProperties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver.FeatureInstalled(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Triggered when a feature is introduced into the farm.</summary>
+      <param name="properties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigationFeatureReceiver.FeatureUninstalling(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Triggered when a feature is removed from the farm.</summary>
+      <param name="properties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver">
+      <summary>Receives data that describes how to set up and configure the Document Center site template.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver.#ctor">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver.FeatureActivated(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Fires when a feature is activated on a specified object.</summary>
+      <param name="properties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver.FeatureDeactivating(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Fires when a feature is deactivated on a specified object.</summary>
+      <param name="properties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver.FeatureInstalled(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Fires when a feature is introduced into the farm.</summary>
+      <param name="properties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocSite.SetupDocSiteFeatureReceiver.FeatureUninstalling(Microsoft.SharePoint.SPFeatureReceiverProperties)">
+      <summary>Fires when a feature is removed from the farm.</summary>
+      <param name="properties">Properties from the specified <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties" /> object</param>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection">
+      <summary>Stores a list of the content types that can be included in an associated <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.Add(Microsoft.SharePoint.SPContentTypeId)">
+      <summary>Adds a content type that can be used with an associated <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object.</summary>
+      <param name="ctId">A struct that uniquely identifies the content type to be added.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.Clear">
+      <summary>Removes all content types from the collection.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.Count">
+      <summary>Gets the number of content types that can be used with an associated <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object.</summary>
+      <returns>An integer that specifies the number of content types that can be used with an associated <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.GetEnumerator">
+      <summary>Returns an enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection" /> object.</summary>
+      <returns>An enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection" /> instance.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.LastModified">
+      <summary>Gets the date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection" /> object was last changed.</summary>
+      <returns>The date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection" /> object was last changed.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.Remove(Microsoft.SharePoint.SPContentTypeId)">
+      <summary>Deletes a content type that can be used with an associated <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object.</summary>
+      <param name="ctId">A struct that uniquely identifies the content type to be added.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypeCollection.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+      <summary>Gets the enumerator.</summary>
+      <returns>Returns <see cref="T:System.Collections.Generic.IEnumerator`1" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument">
+      <summary>Represents a document that will be provisioned automatically for every <see cref="T:Microsoft.Office.DocumentManagementDocumentSet" /> object that is based on the associated content type.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument.ContentTypeId">
+      <summary>Gets or sets the <see cref="T:Microsoft.SharePoint.SPContentTypeId" /> of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPContentTypeId" /> of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument.File">
+      <summary>Gets the name of the <see cref="T:Microsoft.SharePoint.SPFile" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.SharePoint.SPFile" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument.Name">
+      <summary>Gets the name of this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> object.</summary>
+      <returns>The name of this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> object.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection">
+      <summary>Represents a collection of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> objects.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.Add(System.String,Microsoft.SharePoint.SPContentTypeId,System.Byte[])">
+      <summary>Adds a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> object to this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> object.</summary>
+      <returns>An instance of the new default document.</returns>
+      <param name="name">The name of the document to be added.</param>
+      <param name="ctId">A struct that uniquely identifies the content type of the document to be added.</param>
+      <param name="content">An array that contains the document contents.</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.AddSetName">
+      <summary>Gets or sets a value that indicates whether or not custom XML-based documents identified in the associated content type definition should be added to the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> list.</summary>
+      <returns>true to include the custom XML documents in the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> list; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.ChangeContentTypeForDocument(System.String,Microsoft.SharePoint.SPContentTypeId)">
+      <summary>Changes the content type of the named default document to the specified content type.</summary>
+      <returns>true if the operation succeeded; otherwise, false.</returns>
+      <param name="name">The name of the default document to be altered.</param>
+      <param name="contentTypeId">A struct that uniquely identifies the content type to apply to the named document.</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.Count">
+      <summary>The number of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> objects represented in this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> list.</summary>
+      <returns>An integer that specifies the number of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> objects represented in this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> list.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.GetEnumerator">
+      <summary>Returns an enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> instance.</summary>
+      <returns>An enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> instance.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.LastModified">
+      <summary>Gets the date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> object was last changed.</summary>
+      <returns>The date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> object was last changed.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.Remove(System.String)">
+      <summary>Deletes a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> object from this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection" /> object.</summary>
+      <param name="name">The name of the document to be removed.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocumentCollection.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+      <summary>Gets the enumerator.</summary>
+      <returns>Returns <see cref="T:System.Collections.Generic.IEnumerator`1" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException">
+      <summary>Specifies the exception thrown during a Send To Other Location or Export Document Set function when the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets" /> object exceeds 50 megabytes (MB).</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException.#ctor">
+      <summary>Constructs an instance of a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Constructs an instance of a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException" /> object with serialized data.</summary>
+      <param name="si">The serialized object data about the exception being thrown.</param>
+      <param name="sc">The contextual information about the source or destination.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException.#ctor(System.String)">
+      <summary>Constructs an instance of a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocSetTooBigForExportException" /> object.</summary>
+      <param name="message">A message containing information about the exception.</param>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet">
+      <summary>Represents a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object on a SharePoint Server publishing site.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.ContentType">
+      <summary>Gets the content type for the document set.</summary>
+      <returns>The content type for the document set.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.ContentTypeTemplate">
+      <summary>Gets the content type template associated with this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The content type template associated with this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Create(Microsoft.SharePoint.SPFolder,System.String,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable)">
+      <summary>Creates a new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <param name="parentFolder">The folder that contains the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="name">The name of the new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="ctid">The content type identifier on which to base the new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="properties">The properties of the new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Create(Microsoft.SharePoint.SPFolder,System.String,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable,System.Boolean)">
+      <summary>Creates a new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <param name="parentFolder">The folder that contains the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="name">The name of the new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="ctid">The content type identifier on which to base the new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="properties">The properties of the new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+      <param name="bProvisionDefaultContent">true to provision the default content for the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object; otherwise, false.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Create(Microsoft.SharePoint.SPFolder,System.String,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable,System.Boolean,Microsoft.SharePoint.SPUser)">
+      <summary>Creates a new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /></returns>
+      <param name="parentFolder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> object to which the <see cref="DocumentSet" /> object is to be imported</param>
+      <param name="name">The name of the new DocumentSet object</param>
+      <param name="ctid">The ID of the content type to use for creating the new DocumentSet object</param>
+      <param name="properties">The collection of property values to be assigned to the new fields of the DocumentSet object</param>
+      <param name="bProvisionDefaultContent">true if default documents will be provisioned for the new DocumentSet object</param>
+      <param name="user">The user to set as the Author of the new DocumentSet</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Export">
+      <summary>Packages and exports a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object as a single compressed file.</summary>
+      <returns>The resulting file as a byte array.Exports the whole document set as a byte array. For use with streams, use one of the overloads with a <paramref name="stream" /> parameter.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Export(System.IO.Stream)">
+      <summary>Packages and exports a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <param name="stream">The stream into which the method writes a <see cref="T:System.IO.Packaging.Package" /> representation of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Export(System.IO.Stream,System.UInt32)">
+      <summary>Packages and exports a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object as a single compressed file.</summary>
+      <param name="stream">The output stream to which the file will be written</param>
+      <param name="maxMBDocSet">The size limit of the export in megabytes</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Folder">
+      <summary>Gets the <see cref="T:Microsoft.SharePoint.SPFolder" /> object that is associated with this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPFolder" /> object for this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.GetDocumentSet(Microsoft.SharePoint.SPFolder)">
+      <summary>Gets the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object from a specified <see cref="T:Microsoft.SharePoint.SPFolder" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <param name="folder">The folder from which to retrieve the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" />.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Import(System.Byte[],System.String,Microsoft.SharePoint.SPFolder)">
+      <summary>Imports a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <param name="archiveBytes">An array that contains a <see cref="T:System.IO.Packaging.Package" /> representation of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to be imported.</param>
+      <param name="archiveName">The name of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to be created.</param>
+      <param name="parentFolder">The name of the folder in which to place the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Import(System.Byte[],System.String,Microsoft.SharePoint.SPFolder,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable,Microsoft.SharePoint.SPUser)">
+      <summary>Imports a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" />.</returns>
+      <param name="archiveBytes">Byte array of the file to import the DocumentSet from</param>
+      <param name="archiveName">The name of the DocumentSet to import, which will also be the name of this DocumentSet</param>
+      <param name="parentFolder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> object to which the <see cref="DocumentSet" /> object is to be imported</param>
+      <param name="docsetContentTypeId">The <see cref="T:Microsoft.SharePoint.SPContentTypeId" /> object to use the import</param>
+      <param name="properties">A collection of properties to set on the DocumentSet after import</param>
+      <param name="user">The <see cref="T:Microsoft.SharePoint.SPUser" /> to set as the owner and author of the imported DocumentSet</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Import(System.IO.Stream,System.String,Microsoft.SharePoint.SPFolder,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable,Microsoft.SharePoint.SPUser)">
+      <summary>Imports a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Import(System.IO.Stream,System.String,Microsoft.SharePoint.SPFolder,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable,Microsoft.SharePoint.SPSite)" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" />The DocumentSet object resulting from the M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Import(System.IO.Stream,System.String,Microsoft.SharePoint.SPFolder,Microsoft.SharePoint.SPContentTypeId,System.Collections.Hashtable,Microsoft.SharePoint.SPUser)</returns>
+      <param name="archiveStream">The file stream of the file from which to import the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" />, which will be the name of that DocumentSet when it is created</param>
+      <param name="archiveName">Name of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to import</param>
+      <param name="parentFolder">The <see cref="T:Microsoft.SharePoint.SPFolder" /> to which the DocumentSet is to be imported</param>
+      <param name="docsetContentTypeId">The <see cref="T:Microsoft.SPContentTypeId" /> object to use for the import</param>
+      <param name="properties">A collection of properties to be set on the <see cref="DocumentSet" /> after the import</param>
+      <param name="user">The <see cref="T:Microsoft.SharePoint.SPUser" /> object to set as the owner and author of the imported DocumentSet</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Item">
+      <summary>Gets a <see cref="T:Microsoft.SharePoint.SPListItem" /> object that is associated with this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPListItem" /> object that is associated with this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.ParentFolder">
+      <summary>Gets the <see cref="T:Microsoft.SharePoint.SPFolder" /> object that contains the <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>The parent <see cref="T:Microsoft.SharePoint.SPFolder" /> object of the <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.ParentList">
+      <summary>Gets the parent list of the <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>T :Microsoft.SharePoint.SPList object of the list that contains the <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Provision">
+      <summary>Updates the schema of the document set item and its parent list..</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.Provision(System.Boolean)">
+      <summary>Updates the schema of the document set item and its parent list.</summary>
+      <param name="bProvisionDefaultContent">true if the default documents for the content type will be added to the document set as part of provisioning. If the documents already exist, then an exception is thrown.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.SendToOfficialFile(System.String,System.String@,Microsoft.SharePoint.SPOfficialFileHost,System.String,Microsoft.SharePoint.SPOfficialFileSubmissionMode)">
+      <summary>Sends the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to a records repository.</summary>
+      <returns>A <see cref="T:Microsoft.SharePoint.OfficialFileResult" /> object.</returns>
+      <param name="strRecordSeries">The content type of the file created at the target</param>
+      <param name="strAdditionalInfo">A reference to a string where supplemental information from the operation will be placed.</param>
+      <param name="targetHost">An object that represents the external connection to a record center to receive the files.</param>
+      <param name="submitter">The e-mail address of the submitter.</param>
+      <param name="submissionMode">One of the enumeration values that specifies the mode that was used to submit the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> file.</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.VersionCollection">
+      <summary>Gets the collection of <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> version snapshots.</summary>
+      <returns>The version snapshots for the <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet.WelcomePageUrl">
+      <summary>Gets the relative URL of the Welcome page for the <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>A string representation of the Welcome page for the current <see cref="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate">
+      <summary>Represents the template on which <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects are based.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.AllowedContentTypes">
+      <summary>Gets a collection of the content types allowed in <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects that have this template.</summary>
+      <returns>A collection of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.AllowedContentTypesCollection" /> objects that represent the list of allowed content types.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.DefaultDocuments">
+      <summary>Gets the collection of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DefaultDocument" /> objects that are used for the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects that are associated with this template.</summary>
+      <returns>A collection of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate" /> objects that represent the documents that are provisioned during creation of a new <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects that uses this template.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.GetDocumentSetTemplate(Microsoft.SharePoint.SPContentType)">
+      <summary>Gets the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate" /> from a <see cref="T:Microsoft.SharePoint.SPContentType" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate" /> object that holds the settings for a document set content type.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.Id">
+      <summary>Returns the parent <see cref="T:Microsoft.SharePoint.SPContentTypeId" /> object for document sets.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPContentTypeId" /> of the base document set content type</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.SharedFields">
+      <summary>Gets the collections of fields that are synchronised between the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object and its contents.</summary>
+      <returns>A <see cref="T:Microsoft.SharePoint.SPField" /> collection representing the fields that are synchronised between the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object and its contents. </returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.Update(System.Boolean)">
+      <summary>Saves any changes made to the template.</summary>
+      <param name="bPushDown">true if changes are pushed down to child content types; otherwise, false</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.WelcomePageFields">
+      <summary>Gets the collections of fields that are displayed on the welcome page of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects that use this template.</summary>
+      <returns>An <see cref="T:Microsoft.SharePoint.SPField" /> collection representing the fields to be displayed on the welcome page</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetTemplate.WelcomePageView">
+      <summary>Gets or sets the view to use in displaying the contents of document sets on the welcome page of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects that use this template.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPView" /> object to use for displaying the contents of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects on its welcome page.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion">
+      <summary>Represents metadata that is associated with a major or minor version of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object and its files.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.Comments">
+      <summary>Gets the comments for the snapshot.</summary>
+      <returns>Text entered as comments when the snapshot is captured.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.Created">
+      <summary>Gets when the snapshot was captured.</summary>
+      <returns>Returns <see cref="T:System.DateTime" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.CreatedBy">
+      <summary>Gets the <see cref="P:Microsoft.SharePoint.SPUser.LoginName" /> of the <see cref="T:Microsoft.SharePont.SPUser" /> object that captured the snapshot.</summary>
+      <returns>An <see cref="P:Microsoft.SharePoint.SPUser.LoginName" /> value of that represents the user who captured the snapshot.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.Delete">
+      <summary>Deletes the snapshot of the document set version (<see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion" /> object).</summary>
+      <exception cref="T:System.InvalidOperationException">There is no such object in the collection. (When calling this method on a snapshot that has already been deleted.)</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.GetDisplayContents">
+      <summary>Gets information about the snapshot items.</summary>
+      <returns>A list of <see cref="T:Microsot.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> objects for every <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object captured in the snapshot.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.GetDisplayFields">
+      <summary>Gets the document set snapshot metadata fields with titles and values formatted to the locale.</summary>
+      <returns>A list of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField" /> objects for every document set metadata field captured in the snapshot as formatted to the current locale.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.IsLastMajor">
+      <summary>Gets whether only the latest checked in major versions of a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object are captured by this snapshot.</summary>
+      <returns>true if the snapshot captured the latest checked-in major versions; false, when the captured versions are the latest checked in minor or major versions</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.ParentCollection">
+      <summary>Gets the collection of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> objects to which this document set snapshot belongs.</summary>
+      <returns>A <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> object that represents the collection of document set snapshots to which this snapshot belongs.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion.VersionLabel">
+      <summary>Gets the version number of the snapshot.</summary>
+      <returns>A <see cref="T:System.String" /> object that contains an integer number.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection">
+      <summary>Represents a collection of <see cref="T:Microsoft.Office.DocumentManagement.DocumentSetVersion" /> snapshot objects.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Add(System.Boolean,System.String)">
+      <summary>Captures the snapshot of the current T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet object with the specified settings and stores the result in the collection.</summary>
+      <param name="isLastMajor">When true captures latest major versions of items in the document set; 
+otherwise, captures latest checked-in version of the items in the document set.
+</param>
+      <param name="comments">Comments for the snapshot.</param>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent list of %1.</exception>
+      <exception cref="T:System.ArgumentException">Cannot work with snapshot because versioning is not enabled on the parent list of ArgumentException.ParamName=isLastMajor.</exception>
+      <exception cref="T:System.ArgumentException">Cannot take minor version snapshots because minor versioning is not enabled on parent list of ArgumentException.ParamName=isLastMajor.
+</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Contains(System.String)">
+      <summary>Determines whether the collection contains a document set snapshot with the specified label.</summary>
+      <returns>true if snapshot with label specified by <paramref name="label" /> parameter exists in the collection;otherwise, false.</returns>
+      <param name="label">The snapshot version label to locate in the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> object.</param>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+      <exception cref="T:System.ArgumentNullException">The value cannot be set to null or set to Empty.String.
+(ArgumentException.ParamName="label")</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Count">
+      <summary>Gets the number of snapshots in the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> collection.</summary>
+      <returns>An integer specifying the number of snapshots in the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> collection.</returns>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.DeleteAll">
+      <summary>Deletes all the previous snapshots.</summary>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent list of %1.</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Folder">
+      <summary>Gets the foot folder of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.SharePoint.SPFolder" />.</returns>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.GetEnumerator">
+      <summary>Returns an enumerator to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> object.</summary>
+      <returns>Returns <see cref="T:System.Collections.IEnumerator" />.</returns>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Item(System.Int32)">
+      <summary>Gets the snapshot at the specified index in the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> object.</summary>
+      <returns>A <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion" /> object that represents the snapshot of this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <param name="index">An integer that specifies the index of the snapshot.</param>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Index was out of range. Must be non-negative and less than the size of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Item(System.String)">
+      <summary>Gets the snapshot with the specified <paramref name="label" /> from the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection" /> object.</summary>
+      <returns>A <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion" /> object that represents the snapshot of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <param name="label">Snapshot version label.</param>
+      <exception cref="T:System.InvalidOperationException">Cannot work with the snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">The specified key was not present in the dictionary.</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.List">
+      <summary>Gets the parent <see cref="T:Microsoft.SharePoint.SPList" /> object of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to which this collection belongs.</summary>
+      <returns>An <see cref="T:Microsoft.SharePoint.SPList" /> object that represents the parent list of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</returns>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent <see cref="T:Microsoft.SharePoint.SPList" /> object.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.Restore(System.String)">
+      <summary>Restores the document set metadata and items versions to the specified snapshot.</summary>
+      <returns>A System.Collections.Hashtable storing filenames of items that failed to restore as the key and the error message encountered as the corresponding value.</returns>
+      <param name="label">The snapshot version label to restore the document set to.</param>
+      <exception cref="T:System.ArgumentNullException">A document snapshot with label {0} cannot be restored because it does not exist in the parent collection (ArgumentException.ParamName="label") The value cannot be null or an empty string.</exception>
+      <exception cref="T:System.ArgumentException">A document snapshot with label {0} cannot be restored because it does not exist in the parent collection (ArgumentException.ParamName="label")</exception>
+      <exception cref="T:System.InvalidOperationException">Cannot work with snapshot because versioning is not enabled on the parent list of %1.</exception>
+      <exception cref="T:System.InvalidOperationException">One or more items in the Document Set are currently checked out or are records. All items must be checked-in before a previous version can be restored. Items that have been declared as records cannot be restored.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionCollection.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+      <summary>Gets an enumerator to iterate through the collection.</summary>
+      <returns>Returns <see cref="T:System.Collections.Generic.IEnumerator`1" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField">
+      <summary>Represents display information for a <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion" /> metadata field</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField.FormattedValue">
+      <summary>Gets or sets the formatted value of the field.</summary>
+      <returns>The formatted value of the field.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField.Id">
+      <summary>Gets or sets the unique identifier.</summary>
+      <returns>The unique identifier.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField.IsFieldFound">
+      <summary>Gets or sets a value that indicates that the field is present in the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersion" /> object.</summary>
+      <returns>true if the field is present; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField.Title">
+      <summary>Gets or sets the title.</summary>
+      <returns>The title.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionField.Value">
+      <summary>Gets or sets an object representing the value of the field.</summary>
+      <returns>An object representing the value of the field.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem">
+      <summary>Holds display information for the document set snapshot list item.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem.InternalId">
+      <summary>Gets and sets the internal identifier (ID) of the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</summary>
+      <returns>The internal ID of the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem.IsItemFound">
+      <summary>Gets and sets a value that indicates whether the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object is found.</summary>
+      <returns>true if the item is found; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem.ItemUrl">
+      <summary>Gets and sets the URL for the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</summary>
+      <returns>The URL for the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem.LinkToDocumentUrl">
+      <summary>Gets and sets the URL that is used to link the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to a document.</summary>
+      <returns>The URL that is used to link the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object to a document.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem.Title">
+      <summary>Gets or sets the title of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object associated with the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</summary>
+      <returns>The title of the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object associated with the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem.VersionLabel">
+      <summary>Gets or sets the version label associated with the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</summary>
+      <returns>The version label associated with the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSetVersionItem" /> object.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection">
+      <summary>Specifies the list of metadata fields for the <see cref="T:Microsoft.SharePoint.SPContentType" /> object that is associated with the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.DocumentSet" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection.Add(Microsoft.SharePoint.SPField)">
+      <summary>Adds a metadata field to the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection" /> object.</summary>
+      <param name="fld">The field to be added.</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection.Count">
+      <summary>Gets the number of shared fields in the collection.</summary>
+      <returns>An integer that specifies number of shared fields in the collection.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection.GetEnumerator">
+      <summary>Returns an enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection" /> instance.</summary>
+      <returns>An enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection" /> instance.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection.LastModified">
+      <summary>Gets the date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection" /> object last changed.</summary>
+      <returns> The date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection" /> object last changed.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection.Remove(Microsoft.SharePoint.SPField)">
+      <summary>Deletes the specified field from the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection" /> list.</summary>
+      <param name="fld">The field to be removed.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.SharedFieldCollection.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+      <summary>Gets enumerator.</summary>
+      <returns>Returns <see cref="T:System.Collections.Generic.IEnumerator`1" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection">
+      <summary>Specifies the list of metadata fields for the content type that is associated with this <see cref="T:Microsoft.Office.DocumentManagement.DocumentSet" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.Add(Microsoft.SharePoint.SPField)">
+      <summary>Adds a field to the collection.</summary>
+      <param name="fld">The field to be added.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.Clear">
+      <summary>Removes all elements from the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection" /> object.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.Count">
+      <summary>Gets the number of fields in the collection.</summary>
+      <returns>An integer that specifies the number of fields in the collection.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.GetEnumerator">
+      <summary>Returns an enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection" /> instance.</summary>
+      <returns>An enumerator that can be used to iterate through the <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection" /> instance.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.LastModified">
+      <summary>Gets the date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection" /> object was last changed.</summary>
+      <returns>The date and time that the current <see cref="T:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection" /> object was last changed..</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.Remove(Microsoft.SharePoint.SPField)">
+      <summary>Deletes a field from the collection.</summary>
+      <param name="fld">The field to be removed.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.DocumentSets.WelcomePageFieldCollection.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+      <summary>Gets the enumerator.</summary>
+      <returns>Returns <see cref="T:System.Collections.Generic.IEnumerator`1" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext">
+      <summary>Tracks the state of the metadata navigation controls and list view Web Part during an HTTP request.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.CompareFolderUrlToListUrl">
+      <summary>Compares the URL that links to the <see cref="T:Microsoft.SharePoint.SPFolder" /> object to the URL that links to the <see cref="T:Microsoft.Sharepoint.SPList" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.ConvertTaxonomyQueryParamsToFilterOperations">
+      <summary>Converts taxonomy parameters to filter operations for the current <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.Current">
+      <summary>Returns the <see cref="MetadataNavigationContext" /> object for the current <see cref="HttpContext" />, or null if there is no current <see cref="HttpContext" />.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.FolderPath">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.FolderUrl">
+      <summary>Gets the server-relative URL of the <see cref="T:Microsoft.SharePoint.SPFolder" /> for the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.GetContext(System.Web.HttpContext)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.HierarchyDataSourceControl">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.IncludeDescendants">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.IsTaxNodeSelected">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.KeyFiltersControl">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersControl" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.List">
+      <summary>Gets the <see cref="T:Microsoft.Shareoint.SPList" /> object for the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.SharePoint.SPList" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.ListId">
+      <summary>Gets the ID of the current <see cref="T:Microsoft.SharePoint.SPList" /> object for this <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</summary>
+      <returns>Returns <see cref="T:System.Guid" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.ListViewDataSource">
+      <summary>Gets the <see cref="T:Microsoft.SharePoint.SPDataSource" /> object for the active XsltListViewWebPart.</summary>
+      <returns>The active <see cref="SPDataSource" /> for this instance on the current page.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.NavigationSettings">
+      <summary>Gets the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object for the <see cref="T:Microsoft.SharePoint.SPList" /> for the metadata navigation context.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" />.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.OnTreeViewLoad(Microsoft.SharePoint.WebControls.SPTreeView)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.SelectedNodePath">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.SetNewContextLocation(Microsoft.SharePoint.SPWeb,Microsoft.SharePoint.SPList,System.String)">
+      <summary>Sets the current web list and folder context for metadata navigation in this web request.</summary>
+      <param name="web">The new <see cref="T:Microsoft.SharePoint.SPWeb" /> for the context.  Cannot be set to null.</param>
+      <param name="list">null or the new <see cref="T:Microsoft.SharePoint.SPList" /> object value for the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</param>
+      <param name="folderUrl">String.Empty, or the server-relative URL for the <see cref="T:Microsoft.SharePoint.SPFolder" /> object in the context. Ignored if <paramref name="list" /> is set to null.</param>
+      <exception cref="T:System.ArgumentNullException">Thrown if the <paramref name="web" /> parameter value is set to null.</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.ShowIncludeDescendantsUI">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.UniqueNodePath">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.UseCurrentPageUrl">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.Web">
+      <summary>Gets the <see cref="T:Microsoft.SharePoint.SPWeb" /> object for the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</summary>
+      <returns>Returns <see cref="T:Microsoft.SharePoint.SPWeb" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.WebId">
+      <summary>Gets the ID of the <see cref="T:Microsoft.SharePoint.SPWeb" /> object for this <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object.</summary>
+      <returns>Returns <see cref="T:System.Guid" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext.XsltListViewWebPart">
+      <summary>Gets or sets the active <see cref="XsltListViewWebPart" /> object for this instance of the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object on the current page.</summary>
+      <returns>The active <see cref="XsltListViewWebPart" /> object for this instance of the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationContext" /> object on the current page.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy">
+      <summary>Represents a hierarchy of <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem" /> objects.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy.#ctor(Microsoft.SharePoint.SPField)">
+      <summary>Initialize a new instance with the properties set to those of the <see cref="T:Microsoft.SharePoint.SPField" /> input type.</summary>
+      <param name="hierarchyField">The <see cref="T:Microsoft.SharePoint.SPField" /> object for which to initialize this instance.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy.CreateContentTypeHierarchy">
+      <summary>Creates a new instance of the content type special type.</summary>
+      <returns>A new instance of the content type special type</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy.CreateFolderHierarchy">
+      <summary>Creates an instance of the folder hierarchy special type.</summary>
+      <returns>A new instance of the folder hierarchy special type</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy.IsFolderHierarchy">
+      <summary>Gets a flag indicating whether this instance represents the folder hierarchy special type.</summary>
+      <returns>true if this is a folder hierarchy; otherwise, false</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem">
+      <summary>Represents a <see cref="T:Microsoft.SharePoint.SPItem" /> object that is associated with a <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.#ctor(Microsoft.SharePoint.SPField)">
+      <summary>Initializes a <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem" /> object that is based on an <see cref="T:Microsoft.SharePoint.SPField" /> object.</summary>
+      <param name="metaDataField">The <see cref="T:Microsoft.SharePoint.SPField" /> object upon which the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem" /> object is based.</param>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.FieldDisplayName">
+      <summary>Gets the <see cref="Title" /> display name of the field that this instance refers to.</summary>
+      <returns>The <see cref="Title" /> display name of the field that this instance refers to.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.FieldId">
+      <summary>Gets the <see cref="Id" /> of the <see cref="T:Microsoft.SharePoint.SPField" /> object that this instance refers to.</summary>
+      <returns>The <see cref="Id" /> of the <see cref="T:Microsoft.SharePoint.SPField" /> object that this instance refers to.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.FieldTitle">
+      <summary>Gets the <see cref="InternalName" /> property value for <see cref="T:Microsoft.SharePoint.SPField" /> object that this instance refers to.</summary>
+      <returns>The <see cref="InternalName" /> property value for the <see cref="T:Microsoft.SharePoint.SPField" /> object that this instance refers to.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.FieldType">
+      <summary>Gets the <see cref="SPFieldType" /> object value of the <see cref="T:Microsoft.SharePoint.SPField" /> object that this instance refers to.</summary>
+      <returns>The <see cref="SPFieldType" /> that this instance refers to.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.FieldTypeAsString">
+      <summary>Gets the <see cref="TypeAsString" /> property value of the <see cref="T:Microsoft.Office.SPField" /> object that this instance refers to.</summary>
+      <returns>The <see cref="TypeAsString" /> property value of the <see cref="T:Microsoft.Office.SPField" /> object that this instance refers to.</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.IsContentTypeField">
+      <summary>Gets a flag that indicates whether this <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem" /> object represents the content type special type.</summary>
+      <returns>true if this is a content type instance; otherwise, false</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.IsMultiValueLookup">
+      <summary>Gets a flag telling if this instance represents a multivalue user or <see cref="T:Microsoft.SharePoint.Taxonomy.TaxonomyField" /> object</summary>
+      <returns>true if this an instance of a multivalue user or <see cref="T:Microsoft.SharePoint.Taxonomy.TaxonomyField" /> object instance; otherwise, false</returns>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.IsTaxonomyField">
+      <summary>Gets a flag indicating whether this instance represents a <see cref="T:Microsoft.SharePoint.Taxonomy.TaxonomyField" /> object.</summary>
+      <returns>true if this object is an instance of a <see cref="T:Microsoft.SharePoint.Taxonomy.TaxonomyField" /> object; otherwise, false</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem.ToString">
+      <summary>This member overrides the<see cref="M:System.Object.ToString" /> method.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationKeyFilter">
+      <summary>Represents a key filter used to filter metadata navigation to a meaningful, workable subset.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationKeyFilter.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationKeyFilter.#ctor(Microsoft.SharePoint.SPField)">
+      <summary>Initialize a new instance with the properties set to those of the <see cref="T:Microsoft.SharePoint.SPField" /> object that is used for input.</summary>
+      <param name="hierarchyField">The <see cref="T:Microsoft.SharePoint.SPField" /> object that is used to initialize this instance.</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationKeyFilter.CreateContentTypeKeyFilter">
+      <summary>Creates an instance of the content type special type key filter.</summary>
+      <returns>A new instance of the content type special type key filter</returns>
+    </member>
+    <member name="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings">
+      <summary>Configures which settings on a <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationItem" /> object  on an <see cref="T:Microsoft.SharePoint.SPList" /> object control the display of metadata hierarchies and filters on list views.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.#ctor(System.String)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.AddConfiguredHierarchy(Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationHierarchy)">
+      <summary>Adds the input object to configured hierarchies.</summary>
+      <param name="hierarchyToAdd">Input hierachy to add to the settings</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.AddConfiguredKeyFilter(Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationKeyFilter)">
+      <summary>Adds the input object to the configured key filters.</summary>
+      <param name="keyFilterToAdd">The input key filter to add to the settings</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.ClearConfiguredHierarchies">
+      <summary>Resets the list of configured hierarchies to an empty list.</summary>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.ClearConfiguredKeyFilters">
+      <summary>Resets the list of configured key filters to an empty list.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.Current">
+      <summary>Gets the active <see cref="MetadataNavigationContext.NavigationSettings" /> object for the current list, or gets null if there is no current list.</summary>
+      <returns>Returns <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" />.</returns>
+      <exception cref="T:System.NullReferenceException">Thrown if set to null.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.FindConfiguredHierarchy(System.Guid)">
+      <summary>Finds a configured hierarchy that matches the input <paramref name="fieldId" />.</summary>
+      <returns>The configured hierarchy object in this instance of the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object with a <see cref="FieldId" /> value that matches the value of the <paramref name="fieldId" /> parameter; otherwise null.</returns>
+      <param name="fieldId">The field Id to search for in the settings</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.FindConfiguredKeyFilter(System.Guid)">
+      <summary>Finds a configured key filter matching the input <paramref name="fieldId" />.</summary>
+      <returns>The configured key filter object in this instance of the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object with the <see cref="FieldId" /> value that matches the value of the <paramref name="fieldId" />; otherwise, null</returns>
+      <param name="fieldId">The field Id to search for in the settings</param>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.GetMetadataNavigationSettings(Microsoft.SharePoint.SPList)">
+      <summary>Gets the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object for a specified source list.</summary>
+      <returns>A new instance populated with the data configured for the specified <paramref name="sourceListId" /></returns>
+      <param name="sourceList">The source list to get the settings from</param>
+      <exception cref="T:System.ArgumentNullException">The specified <see cref="T:Microsoft.SharePoint.SPList" /> object is set to null</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.GetMetadataNavigationSettings(Microsoft.SharePoint.SPWeb,System.Guid)">
+      <summary>Gets the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object for a specified source list.</summary>
+      <returns>New instance populated with the data configured for the specified <paramref name="sourceListId" /> if a matching list for the specified Id exists; otherwise, null</returns>
+      <param name="web">The <see cref="T:Microsoft.SharePoint.SPWeb" /> object that contains the source list for the settings.</param>
+      <param name="sourceListId">The Id of the source list for the settings.</param>
+      <exception cref="T:System.ArgumentNullException">Specified <see cref="T:Microsoft.SharePoint.SPWeb" /> object is set to null</exception>
+      <exception cref="T:System.NullReferenceException">The <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object is called outside of an ASP.Net page request and <see cref="MetadataNavigationContext.Current" /> is set to null.</exception>
+    </member>
+    <member name="F:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.HierarchyNodeIdFieldRoot">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="F:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.HierarchyNodeIdListRoot">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.IsEnabled">
+      <summary>Gets whether any additional metadata hierarchy objects or key filter objects are configured.</summary>
+      <returns>true if there are any configured key filters or other hierarchy objects beyond the default special type for folders; otherwise false</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.IsMetadataNavConfigured(Microsoft.SharePoint.SPWeb,System.Guid)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.SetMetadataNavigationSettings(Microsoft.SharePoint.SPList,Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings)">
+      <summary>Updates the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> object for a specified <see cref="T:Microsoft.SharePoint.SPList" /> object without automatically updating the list indexing.</summary>
+      <param name="sourceList">The list to update these settings on.</param>
+      <param name="listNavSettings">The new settings to update on the list</param>
+      <exception cref="T:System.ArgumentNullException">One of the input parameters is set to null.</exception>
+    </member>
+    <member name="M:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.SetMetadataNavigationSettings(Microsoft.SharePoint.SPList,Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings,System.Boolean)">
+      <summary>Updates the <see cref="T:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings" /> for a specified <see cref="T:Microsoft.SharePoint.SPList" /> and then automatically adjusts the list indexing.</summary>
+      <param name="sourceList">The list to update settings on</param>
+      <param name="listNavSettings">New settings to update to the list</param>
+      <param name="updateListIndexing">true if making automatic list index changes after updating settings; otherwise, false</param>
+      <exception cref="T:System.ArgumentNullException">One of the input parameters is set to null</exception>
+      <exception cref="T:Microsoft.SharePoint.SPException">
+        <paramref name="updateListIndexing" /> is set to true and the maximum number of list indices is reached while automatically adjusting list indexing.</exception>
+      <exception cref="T:Microsoft.SharePoint.SPQueryThrottledException">
+        <paramref name="updateListIndexing" /> is set to true and the automatic index adjustment operation is throttled.</exception>
+    </member>
+    <member name="P:Microsoft.Office.DocumentManagement.MetadataNavigation.MetadataNavigationSettings.SettingsXml">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.ColumnFilterCAMLGeneratorControl">
+      <summary>Generates indexed CAML queries from filtered SharePoint list views.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.ColumnFilterCAMLGeneratorControl.#ctor">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.Server.WebControls.ColumnFilterCAMLGeneratorControl" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.ColumnFilterCAMLGeneratorControl.OnLoad(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="E:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocIdSearchWebPart">
+      <summary>Implements a Web Part that allows a document to be located by its document identifier.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocIdSearchWebPart.#ctor">
+      <summary>Initializes a new instance of a <see cref="T:Microsoft.Office.Server.WebControls.DocIdSearchWebPart" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocIdSearchWebPart.CreateChildControls">
+      <summary>Creates the child controls that are implemented by the <see cref="T:Microsoft.Office.Server.WebControls.DocIdSearchWebPart" /></summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocIdSearchWebPart.OnInit(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Init" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocIdSearchWebPart.OnPreRender(System.EventArgs)">
+      <summary>Raises the <see cref="T:System.Web.UI.Control.PreRender" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocIdSearchWebPart.RenderWebPart(System.Web.UI.HtmlTextWriter)">
+      <summary>Renders the <see cref="T:Microsoft.Office.Server.WebControls.DocIdSearchWebPart" />.</summary>
+      <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that writes the HTML string to the ASP.NET server control output stream.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocIdSearchWebPart.SearchButtonClick(System.Object,System.EventArgs)">
+      <summary>Renders the on click event that fires when the Search button ic clicked.</summary>
+      <param name="sender">The identity of the <see cref="T:System.Object" /> that is sending search data.</param>
+      <param name="e">Event arguments.</param>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocSetControl">
+      <summary>Provides the base class for the Document Set controls.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetControl.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.DocSetControl" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocSetControl.DocumentSetFolder">
+      <summary>Gets the folder of the current list item whose type is Document Set from the current <see cref="T:Microsoft.SharePoint.SPContext" /> as a <see cref="T:Microsoft.SharePoint.SPFolder" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPFolder" /> object that represents the folder of the current list item whose type is Document Set.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocSetControl.DocumentSetItem">
+      <summary>Gets the current list item whose type is Document Set from the current <see cref="T:Microsoft.SharePoint.SPContext" /> as a <see cref="T:Microsoft.SharePoint.SPListItem" /> object.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPListItem" /> object that represents the current list item whose type is Document Set.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocSetControl.DocumentSetParentList">
+      <summary>Gets the <see cref="T:Microsoft.SharePoint.SPContext" /> object as the parent list of the current Document Set.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPList" /> object that represents the parent list of the current Document Set.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetControl.OnInit(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Init" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetControl.OnLoad(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocSetRibbonActions">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetRibbonActions.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.DocSetRibbonActions" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetRibbonActions.OnLoad(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetRibbonActions.RaisePostBackEvent(System.String)">
+      <summary>Implements the <see cref="I:System.Web.UI.IPostBackEventHandler" /> interface to process the delete event raised when the DeleteDocumentSet ribbon action is selected.</summary>
+      <param name="eventArgument">The <see cref="T:System.String" /> object that represents an optional event argument to be passed to the event handler.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetRibbonActions.RegisterClientData">
+      <summary>Registers the client ribbon actions data of the Document Set to the welcome page.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocSetWelcomePageControl">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetWelcomePageControl.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.DocSetWelcomePageControl" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetWelcomePageControl.OnLoad(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetWelcomePageControl.RaisePostBackEvent(System.String)"></member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocSetWelcomePageControl.RenderControl(System.Web.UI.HtmlTextWriter)">
+      <summary>Outputs ECMAScript (JavaScript, JScript) and warning information to the provided <see cref="T:System.Web.UI.HtmlTextWriter" /> object.</summary>
+      <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that receives the control content.</param>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart">
+      <summary>Provides the base class for the Document Set Web Parts.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart.DocumentSetFolder">
+      <summary>Gets the Document Set folder for the current <see cref="T:Microsoft.SharePoint.SPFolder" /> object that carries this control.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart.DocumentSetItem">
+      <summary>Gets the Document Set item for the current <see cref="T:Microsoft.SharePoint.SPListItem" /> object that carries this control.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart.DocumentSetParentList">
+      <summary>Gets the parent list for list item that carries this control. </summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart.m_docSetFolder">
+      <summary>Specifies the folder whose type is Document Set as the Document Set folder.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.DocumentSetBaseWebPart.m_docSetList">
+      <summary>Specifies the current list in HTTP context as the parent list of the current Document Set.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart">
+      <summary>Reserved for internal use. Provides the Web Part for displaying the documents inside a Document Set.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart.CreateChildControls">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Creates the child controls of the Web Part to display the contents of the Document Set.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart.OnLoad(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart.RenderWebPart(System.Web.UI.HtmlTextWriter)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Renders the Web Part to the client to show the contents of the Document Set.</summary>
+      <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that renders the content of the Web Part to the client.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.DocumentSetContentsWebPart.WebPartContextualInfo">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the ribbon contextual tabs information of the Web Part.</summary>
+      <returns>The <see cref="T:SP.Ribbon.WebPartContextualInfo" /> object that represents the ribbon contextual tabs information of the Web Part.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Provides a Web Part for displaying and editing Document Set properties.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart.OnInit(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Init" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart.OnLoad(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart.OnPreRender(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.DocumentSetPropertiesWebPart.RenderWebPart(System.Web.UI.HtmlTextWriter)">
+      <summary>Renders the DocumentSetPropertiesWebPart to the Document Set welcome page.</summary>
+      <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that writes the HTML to the Document Set welcome page.</param>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.KeyFilterCompositeField">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFilterCompositeField.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.KeyFilterCompositeField" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFilterCompositeField.CreateChildControls">
+      <summary>Creates the child controls to render the Key Filter Composite Field on the page.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.KeyFilterCompositeField.DefaultTemplateName">
+      <summary>Gets the name of the control template that renders the field controls.</summary>
+      <returns>The<see cref="T:System.String" /> object that represents the name of the control template. It returns “KeyFiltersCompositeFieldRangeCapable” if the field type of the KeyFilterCompositeField control is DateTime, Number, Currency and Integer; otherwise, it returns “KeyFiltersCompositeFieldDefault”.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFilterCompositeField.OnPreRender(System.EventArgs)">
+      <summary>Raises the <see cref="T:System.Web.UI.Control.PreRender" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.KeyFilterCompositeField.Visible">
+      <summary>Gets or sets a value that indicates whether this control is visible on the page.</summary>
+      <returns>true if this control is visible on the page; otherwise, false.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.KeyFiltersControl">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersControl.#ctor">
+      <summary>Initializes an instance of a <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersControl" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersControl.CreateChildControls">
+      <summary>Creates the child input filter controls.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.KeyFiltersControl.CurrentFiltersForm">
+      <summary>Gets the current filters form for the <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersControl" /> control.</summary>
+      <returns>The <see cref="T:Microsoft.Office.Server.WebControls.SimpleItemForm" /> object that represents the current filters form.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersControl.OnInit(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Web.UI.Control.Init" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersControl.OnPreRender(System.EventArgs)">
+      <summary>Registers the JavaScript function that handles applying the specified filters to the list view.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersControl.RaisePostBackEvent(System.String)">
+      <summary>Handles the post-back event for the <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersControl" /> control when it posts back to the server.</summary>
+      <param name="eventArgument">The <see cref="T:System.String" /> object that specifies that the value of the parameter is either "KeyFiltersApplyPostbackEvent" or "KeyFiltersClearPostbackEvent".  </param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.KeyFiltersControl.Visible">
+      <summary>Gets or sets the value that indicates whether the <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersControl" /> control is visible.</summary>
+      <returns>true if it is visible; otherwise, false.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.KeyFiltersFormIterator">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersFormIterator.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersFormIterator" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.KeyFiltersFormIterator.CreateChildControls">
+      <summary>Creates a <see cref="T:Microsoft.Office.Server.WebControls.KeyFilterCompositeField" /> control  for each non-hidden field on the list.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.KeyFiltersFormIterator.DefaultTemplateName">
+      <summary>Provides the name of the default template for this control.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the name of the default template for this control.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.LargeListContextInformation">
+      <summary>Reserved for internal use.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.LargeListContextInformation.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.LargeListContextInformation" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.LargeListContextInformation.CanPerformLargeListOperation">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets a flag that specifies whether performing large list operations is allowed.</summary>
+      <returns>true if the large list is not throttled or if the current user has permission to ignore throttling; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.LargeListContextInformation.ContextList">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the context web application for the large list.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPList" /> object that represents the large list on which the operations are performed.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.LargeListContextInformation.ContextWebApplication">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the context web application for the large list.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.Administration.SPWebApplication" /> object that represents the context web application used to determine large list throttling settings.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.LargeListContextInformation.GenerateMessageText">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Generates large list operation throttling messages.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the warning message shown when a user performs a large list operation.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.LargeListContextInformation.OnPreRender(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.LargeListContextInformation.PercentageOfMaxItemsForSizeWarning">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the percentage value used to calculate the bar above which the warning message for performing large list operations will be displayed.</summary>
+      <returns>The <see cref="T:System.Int32" /> object that represents the percentage value used to calculate the bar above which the warning message for performing large list operations will be displayed. If the return value is zero, nothing will be displayed.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.LargeListContextInformation.ShowOperationWarning">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets a flag that specifies whether to show the warning message for performing large list operations.</summary>
+      <returns>true if the warning message for performing large list operations should be shown; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.LargeListContextInformation.UseInformationBar">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets a flag that specifies whether to show the warning message in a <see cref="T:Microsoft.SharePoint.WebControls.GenericInformationBar" /> control.</summary>
+      <returns>true if the <see cref="T:Microsoft.SharePoint.WebControls.GenericInformationBar" /> control is used to display the warning message; otherwise, false.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl">
+      <summary>Reserved for internal use.. Implements a data source control that supports metadata navigation.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.#ctor(Microsoft.SharePoint.WebControls.SPHierarchyDataSourceControl)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes an new instance of the <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> class with the specified <see cref="T:Microsoft.SharePoint.WebControls.SPHierarchyDataSourceControl" /> object.</summary>
+      <param name="underlyingSPHierarchyDataSource">The <see cref="T:Microsoft.SharePoint.WebControls.SPHierarchyDataSourceControl" /> object used to initialize a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> class.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.AdditionalQueryString">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets an additional query string.</summary>
+      <returns>Returns <see cref="T:System.String" />.</returns>
+    </member>
+    <member name="E:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.DataSourceChanged">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Occurs when a <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> change has affected data-bound controls.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.GetHierarchicalView(System.String)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the view helper object for the <see cref="T:System.Web.UI.IHierarchicalDataSource" /> interface for the specified path.</summary>
+      <returns>The <see cref="T:System.Web.UI.HierarchicalDataSourceView" /> object that represents a single view of the data at the identified hierarchical level.</returns>
+      <param name="viewName">The <see cref="T:System.String" /> object that represents the hierarchical path of the view to retrieve.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.OnInit(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the OnInit event.</summary>
+      <param name="e">Event arguments.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.OnLoad(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the Load event.</summary>
+      <param name="e">Event arguments.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.SPHierarchyDataSourceId">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the ID of the <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> on the page.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the ID of the <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> on the page that provides the underlying hierarchy nodes and information.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl.Web">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the <see cref="T:Microsoft.SharePoint.SPWeb" /> object used to fetch the relevant data.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPWeb" /> object where the <see cref="T:Microsoft.Office.Server.WebControls.MetadataHierarchyDataSourceControl" /> is held.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.MetaDataNavTree">
+      <summary>Reserved for internal use.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.MetaDataNavTree" />class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetaDataNavTree.BaseTreeViewDataSource">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the <see cref="T:Microsoft.SharePoint.WebControls.SPHierarchyDataSourceControl" /> as the data source of the <see cref="P:Microsoft.Office.Server.WebControls.MetaDataNavTree.BaseWebTreeView" />.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.WebControls.SPHierarchyDataSourceControl" /> object that represents the data source of the <see cref="P:Microsoft.Office.Server.WebControls.MetaDataNavTree.BaseWebTreeView" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetaDataNavTree.BaseWebTreeView">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the <see cref="T:Microsoft.SharePoint.WebControls.SPTreeView" /> object that displays the hierarchical collection of the configured navigation fields.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.WebControls.SPTreeView" /> object that displays the hierarchical collection of the configured navigation fields.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.CallOnTreeViewLoad">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes the <see cref="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.WebTreeView" /> and  binds the data source to it.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetaDataNavTree.InitialTreeViewHeight">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the initial height of the <see cref="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewRememberScroll" />.</summary>
+      <returns>The <see cref="T:System.Web.UI.WebControls.Unit" /> structure that represents the initial height of the <see cref="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewRememberScroll" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MetaDataNavTree.InitialTreeViewWidth">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the initial width of the <see cref="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewRememberScroll" />.</summary>
+      <returns>The <see cref="T:System.Web.UI.WebControls.Unit" /> structure that represents the initial width of the <see cref="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewRememberScroll" />.</returns>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.ListViewKeyFilters">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies the <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersControl" /> for filtering the list view items.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.MetadataTreeViewDataSource"></member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.OnInit(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.UserControl.Init" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.OnLoad(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.UserControl.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.OnUnload(System.EventArgs)">
+      <summary>Raises the OnUnload(System.EventArgs) event.</summary>
+      <param name="e">Event arguments.</param>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeLabelPanel">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies a <see cref="T:System.Web.UI.WebControls.Panel" /> as the container of the <see cref="T:Microsoft.Office.Server.WebControls.MetaDataNavTree" /> label whose text can be configured. This panel is not visible by default in the <see cref="T:Microsoft.Office.Server.WebControls.MetaDataNavTree" />.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewDataBound(System.Object,System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:Microsoft.Office.Server.WebControls.MetaDataNavTree.WebTreeView.DataBound" /> event.</summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewDataSource">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies a <see cref="T:Microsoft.SharePoint.WebControls.SPHierarchyDataSourceControl" /> as the data source of the <see cref="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.WebTreeView" />.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.TreeViewRememberScroll">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies a <see cref="T:Microsoft.SharePoint.WebControls.SPRememberScroll" /> object as the container of the <see cref="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.WebTreeView" /> to handle its scrolling position persistence.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MetaDataNavTree.WebTreeView">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies a <see cref="T:Microsoft.SharePoint.WebControls.SPTreeView" /> for displaying the hierarchical collection of the configured navigation fields.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.MyLinksRibbon">
+      <summary>Reserved for internal use.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.MyLinksRibbon" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.AddLink">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Adds a My Link ribbon for the current user.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.GetCallbackResult">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Returns the result of a callback event that targets the My Links ribbon.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the result of the callback event.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.GetFullListUrl(Microsoft.SharePoint.SPList)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Returns the full URL of the specified <see cref="T:Microsoft.SharePoint.SPList" /> object.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the full URL of the specified <see cref="T:Microsoft.SharePoint.SPList" /> object.</returns>
+      <param name="list">The <see cref="T:Microsoft.SharePoint.SPList" /> object that represents the specified list whose full URL will be returned.</param>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MyLinksRibbon.m_callbackEventArgument">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies the argument of the callback event raised by the My Links ribbon action.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MyLinksRibbon.m_callbackScriptFunction">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Specifies the name of the client event handler that receives the result of the server event.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MyLinksRibbon.m_qlManager">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Represents a reference to the <see cref="T:Microsoft.Office.Server.UserProfiles.QuickLinkManager" /> used to manage the My Links ribbon of the current user.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.NeedScriptOnPage">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Indicates whether the <see cref="T:Microsoft.Office.Server.WebControls.MyLinksRibbon" /> object needs script on the page.</summary>
+      <returns>Returns <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.OnLoad(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MyLinksRibbon.QlManager">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets a reference to the <see cref="T:Microsoft.Office.Server.UserProfiles.QuickLinkManager" /> for managing the current user’s My Links ribbon.</summary>
+      <returns>The <see cref="T:Microsoft.Office.Server.UserProfiles.QuickLinkManager" /> object that is used to manage the current user’s My Links ribbon.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.RaiseCallbackEvent(System.String)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Processes the callback event that targets the My Links ribbon.</summary>
+      <param name="strEventArgument">The <see cref="T:System.String" /> object that represents an event argument to pass to the event handler.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.RegisterCallbackScript">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Registers the ECMAScript (JavaScript, JScript) to implement the actions on the My Links ribbon.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Renders the HTML begin tag received from the <see cref="T:System.Web.UI.HtmlTextWriter" /> character or text string.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.MyLinksRibbon.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Renders the HTML end tag received from the <see cref="T:System.Web.UI.HtmlTextWriter" /> character or text string.</summary>
+      <param name="writer">The HtmlTextWriter object that emits the character or text string.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.MyLinksRibbon.RibbonInitScript">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the ECMAScript (JavaScript, JScript) that used to initialize the My Links ribbon.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the Java Script that used to initialize the My Links ribbon.</returns>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MyLinksRibbon.s_callbackArgAdd">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Represents the callback event argument for the add action.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MyLinksRibbon.s_callbackArgDel">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Represents the callback event argument for the delete action.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Server.WebControls.MyLinksRibbon.s_callbackArgManage">
+      <summary>Represents the callback event argument for the edit action.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.NavResizerControl">
+      <summary>Reserved for internal use. Provides a resizing control that can be used to adjust the width and height values of the containing control.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.NavResizerControl.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Initializes a new instance of the <see cref="T:Microsoft.Office.Server.WebControls.NavResizerControl" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.NavResizerControl.CreateChildControls">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Creates the child controls that adjust the width and height values of the containing control and saves the values as hidden fields.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.FilterFormContainerElementId">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the element ID of the filter form container.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the element ID of the filter form container.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.HeightFieldName">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the name of the hidden field to which the resized height value is saved.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the name of the hidden height field.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.NavResizerControl.OnInit(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.Control.Init" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.NavResizerControl.OnLoad(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.Control.Load" /> event.</summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.NavResizerControl.OnPreRender(System.EventArgs)">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.</summary>
+      <param name="e">The <see cref="T:System.EvnetArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.ResizerHeight">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the resizing height value of the containing control.</summary>
+      <returns>The <see cref="T:System.Int32" /> object that represents the resizing height value of the containing control.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.ResizerWidth">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets the resizing width value of the containing control.</summary>
+      <returns>The <see cref="T:System.Int32" /> object that represents the resizing width value of the containing control.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.ResizeTargetControlName">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Gets or sets the name of the containing control to be resized.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the name of the containing control.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.TargetControlClientID">
+      <summary>Gets the client ID of the target control, which is the control to be resized.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the client ID of the target control.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.NavResizerControl.WidthFieldName">
+      <summary>Gets the name of the hidden width field to which the resized width value is saved.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the name of the hidden width field.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.PlvMenu">
+      <summary>Represents a PLV menu.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.PlvMenu.#ctor">
+      <summary>Constructs an instance of a <see cref="T:Microsoft.Office.Server.WebControls.PlvMenu" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.PlvMenu.CreateChildControls"></member>
+    <member name="M:Microsoft.Office.Server.WebControls.PlvMenu.CreateConfigureSettingsMenuItem(System.String)">
+      <summary>Creates and configures the Settings menu item for the specified URL.</summary>
+      <returns>Returns <see cref="T:Microsoft.SharePoint.WebControls.MenuItemTemplate" />.</returns>
+      <param name="settingsUrl">
+        <see cref="T:System.String" /> object that represents the URL for the Settings menu.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.PlvMenu.FilterViews">
+      <summary>Filters views for the PLV menu.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Server.WebControls.SimpleItemForm">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code. Provides a field form that is created from an arbitrary custom <see cref="T:Microsoft.SharePoint.SPField" /> collection schema.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.SimpleItemForm.#ctor">
+      <summary>Initializes an instance of a <see cref="T:Microsoft.Office.Server.WebControls.SimpleItemForm" /> object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.SimpleItemForm.#ctor(Microsoft.SharePoint.SPWeb)">
+      <summary>Initializes an instance of a <see cref="T:Microsoft.Office.Server.WebControls.SimpleItemForm" /> object with a specified <see cref="T:Microsoft.SharePoint.SPWeb" /> object.</summary>
+      <param name="web">The <see cref="T:Microsoft.SharePoint.SPWeb" /> object that is used to initialize the internal collection of fields.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.SimpleItemForm.CreateChildControls">
+      <summary>Creates the child <see cref="T:Microsoft.Office.Server.WebControls.KeyFiltersFormIterator" /> control to render the field controls on the simple item form.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.WebControls.SimpleItemForm.CreateSimpleItemFieldsSchema(System.Collections.Generic.ICollection{Microsoft.SharePoint.SPField})">
+      <summary>Generates the <see cref="T:Microsoft.SharePoint.SPFieldCollection" /> object with the provided <see cref="T:Microsoft.SharePoint.SPField" /> objects.</summary>
+      <returns>The <see cref="T:Microsoft.SharePoint.SPFieldCollection" /> object that is built on the provided <see cref="T:System.Collections.Generic,ICollection{Microsoft.SharePoint.SPField}" /> object.</returns>
+      <param name="collectionOfFields">The <see cref="T:System.Collections.Generic,ICollection{Microsoft.SharePoint.SPField}" /> object that contains the fields on which the <see cref="T:Microsoft.SharePoint.SPFieldCollection" /> will be built.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.WebControls.SimpleItemForm.FieldCollectionXml">
+      <summary>Gets or sets the schema string that defines the field collection that is used to generate the fields for rendering the field form.</summary>
+      <returns>The <see cref="T:System.String" /> object that represents the field collection Collaborative Application Markup Language (CAML) schema string.</returns>
+    </member>
+  </members>
+</doc>

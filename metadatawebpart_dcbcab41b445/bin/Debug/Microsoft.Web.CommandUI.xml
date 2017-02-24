@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Web.CommandUI</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Web.CommandUI.CUIDataSource">
+      <summary>Represents an abstract class that loads an XML document, retrieves a subset of its data, and applies customizations to the XML by replacing or removing some of the nodes.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.CUIDataSource" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.AddNeededTemplates">
+      <summary>Adds in the needed  group templates.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.ApplyExtensions">
+      <summary>Applies customizations and overrides to the document.</summary>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.CUIDataSource.CurrentQuery">
+      <summary>Gets the query that is currently being used and run by the data source.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.UIQuery" /> that contains the current query.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.CUIDataSource.Document">
+      <summary>Gets or sets the XML document to be loaded and customized.</summary>
+      <returns>An <see cref="T:System.Xml.XmlDocument" /> object that represents an XML document.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.EnsureDocument">
+      <summary>Ensures the presence of the initial XML document containing all UI.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.GetResultDocument">
+      <summary>Gets the XML document that is the result of the last query.</summary>
+      <returns>A <see cref="T:System.Xml.XmlDocument" /> that is the result of the last query.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.GetTemplateExtension(System.String)">
+      <summary>Gets the template extension specified by the template identifier.</summary>
+      <returns>A <see cref="T:System.Xml.XmlNode" /> object that contains the template extension.</returns>
+      <param name="templateId">The unique identifier of the template extension.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.GetTemplatesUsedByTabGroups(System.Collections.Hashtable,Microsoft.Web.CommandUI.RibbonNodeList)">
+      <summary>Gets the templates from the specified <see cref="T:Microsoft.Web.CommandUI.RibbonNodeList" />.</summary>
+      <param name="templates">The list of templates that are retrieved from the node list.</param>
+      <param name="xnlGroups">A list of groups that contain the templates.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.HandleAllQuery">
+      <summary>Handles a query that returns all of the data in a data source.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.HandleRibbonTabQuery(System.String,System.Boolean)">
+      <summary>Handles a query for Server ribbon data based on the provided identifier.</summary>
+      <param name="id">A string that specifies the ID of a tab or root node.</param>
+      <param name="includeTabSiblings">true if the query should return all tabs or only the specified tab; otherwise, false.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.HandleRootQuery(System.String)">
+      <summary>Handles a query that retrieves a root node.</summary>
+      <param name="id">The ID of the root node.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.Init">
+      <summary>Initializes an instance of the <see cref="T:Microsoft.Web.CommandUI.CUIDataSource" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.CUIDataSource.NamespaceManager">
+      <summary>The namespace manager that is used when querying the XML file.</summary>
+      <returns>A <see cref="T:System.Xml.XmlNamespaceManager" /> used to query the XML file.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.CUIDataSource.ResultDocument">
+      <summary>Gets or sets the document that results after customizations are applied to it.</summary>
+      <returns>The <see cref="T:System.Xml.XmlDocument" /> object that represents the result document.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.RunQuery(Microsoft.Web.CommandUI.UIQuery)">
+      <summary>Applies the specified query to the Server ribbon.</summary>
+      <param name="query">The specified query to run.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.WriteResult(System.IO.TextWriter)">
+      <summary>Write the resulting document using the given <see cref="System.IO.TextWriter" /> object.</summary>
+      <param name="writer">
+        <see cref="System.IO.TextWriter" /> parameter containing the document to write.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.CUIDataSource.WriteResultDocument(System.IO.TextWriter)">
+      <summary>Write the resulting document using the given <see cref="System.IO.TextWriter" /> object.</summary>
+      <param name="writer">
+        <see cref="System.IO.TextWriter" /> parameter containing the document to write.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.CUIDataSource.XmlNamespace">
+      <summary>Gets the namespace used for XPath queries in the default Server ribbon XML file.</summary>
+      <returns>A string that contains the namespace name.</returns>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.DataNode">
+      <summary>Contains a reference to an <see cref="T:System.XML.XMLNode" /> object. </summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.#ctor(System.Xml.XmlNode)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.DataNode" /> class.</summary>
+      <param name="node">The <see cref="T:System.Xml.XmlNode" /> object to be referenced by the <see cref="T:Microsoft.Web.CommandUI.DataNode" />.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.#ctor(System.Xml.XmlNode,System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.DataNode" /> class.</summary>
+      <param name="node">The <see cref="T:System.Xml.XmlNode" /> object that is appended to the current set of nodes.</param>
+      <param name="bClone">true if <paramref name="node" /> is appended to the list of nodes as a child; otherwise, false. </param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.AppendChild(Microsoft.Web.CommandUI.DataNode,System.Boolean)">
+      <summary>Appends the specified node to the current Server ribbon node.</summary>
+      <param name="ribbonNode">The node to append to the current ribbon node.</param>
+      <param name="bClone">true if the child nodes of <paramref name="ribbonNode" /> are copied; otherwise, false.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.DataNode.Attributes">
+      <summary>Gets the current set of attributes for the <see cref="T:Microsoft.Web.CommandUI.DataNode" />.</summary>
+      <returns>A <see cref="T:System.Xml.XmlAttributeCollection" /> object that contains the attributes.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.DataNode.ChildNodes">
+      <summary>Gets the collection of child nodes for the current Server ribbon node.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.RibbonNodeList" /> that contains the child nodes.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.DataNode.HasChildNodes">
+      <summary>Specifies if the current Server ribbon node has child nodes.</summary>
+      <returns>true if the current Server ribbon node has child nodes; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.DataNode.Name">
+      <summary>Gets the name of the node.</summary>
+      <returns>A string that contains the name of the node.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.DataNode.Node">
+      <summary>Gets the currently select node.</summary>
+      <returns>The current <see cref="T:System.Xml.XmlNode" /> object.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.DataNode.ParentNode">
+      <summary>Gets the parent node of the current Server ribbon node.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.DataNode" /> that contains the parent of the current ribbon node.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.RemoveChild(Microsoft.Web.CommandUI.DataNode)">
+      <summary>Removes the child node from the current Server ribbon node.</summary>
+      <param name="child">The child node to remove from the current ribbon node.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.SelectNodes(System.String)">
+      <summary>Selects a group of nodes based on the specified XPath expression.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.RibbonNodeList" /> that contains the nodes specified by the <paramref name="xpath" /> parameter.</returns>
+      <param name="xpath">An XPath expression used to select nodes.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.SelectSingleNode(System.String)">
+      <summary>Selects a single node based on the specified XPath expression.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.DataNode" /> that contains the node selected by the XPath expression.</returns>
+      <param name="xpath">An XPath expression used to select nodes.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.DataNode.WriteTo(System.Xml.XmlWriter)">
+      <summary>Writes the Server ribbon node’s XML stream to the specified <see cref="T:System.Xml.XmlWriter" />.</summary>
+      <param name="w">An <see cref="T:System.Xml.XmlWriter" /> object that writes out the XML of the current node.</param>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.Ribbon">
+      <summary>Renders the Server ribbon on a page.  Do not use types or members of the <see cref="N:Microsoft.Web.CommandUI" /> namespace for development within a SharePoint environment, but instead use <see cref="T:Microsoft.SharePoint.WebControls.SPRibbon" /> and related types in the <see cref="N:Microsoft.SharePoint.WebControls" /> namespace. For information about customizing the ribbon in SharePoint Foundation see Server Ribbon in SharePoint Foundation. </summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.Ribbon" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ActiveTabId">
+      <summary>Gets the Server ribbon tab that was open prior to page postback.</summary>
+      <returns>A string that contains the ID of the tab.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.CheckForInitializationReadiness">
+      <summary>Gets or sets the value that specifies if the Server ribbon waits to allow tabs to be opened.</summary>
+      <returns>A Boolean that specifies if the ribbon waits to allow tab to be opened.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.CommandUIDefinitions">
+      <summary>This object, member, or enumeration is deprecated and is not intended to be used in your code.</summary>
+      <returns>Returns null.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.CommandUIVisible">
+      <summary>Gets or sets a value that indicates whether the Server ribbon is visible. </summary>
+      <returns>true if the ribbon is visible; otherwise, false. </returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.DataSource">
+      <summary>Gets or sets the data source for the Server ribbon. </summary>
+      <returns>The current <see cref="T:Microsoft.Web.CommandUI.CUIDataSource" />. </returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.DataUrl">
+      <summary>Gets or sets the URL that the Server ribbon will use to retrieve data from the server.</summary>
+      <returns>A string that contains the URL.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.DataVersion">
+      <summary>Gets or sets the version of the server data.</summary>
+      <returns>A string that contains the version.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.DisabledVisibilityContexts">
+      <summary>Gets the visibility contexts that have been disabled during page rendering.</summary>
+      <returns>The disable visibility contexts.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.DisableVisibilityContext(System.String)">
+      <summary>Disables the specified visibility context.</summary>
+      <param name="visibilityContext">A string representation of the visibility context. </param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.EnabledVisibilityContexts">
+      <summary>Gets the visibility contexts that have been enabled during page rendering.</summary>
+      <returns>The enabled visibility contexts.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.EnableVisibilityContext(System.String)">
+      <summary>Enables the specified visibility context.</summary>
+      <param name="visibilityContext">A string representation of the visibility context. </param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.FixedPositioningEnabled">
+      <summary>Gets or sets whether the Server ribbon uses a fixed position.</summary>
+      <returns>true if fixed positioning is enabled; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.GetPeripheralDataForSection(System.String,System.String,System.Boolean)">
+      <summary>Returns the data that is contained within a peripheral content section.</summary>
+      <returns>A string that contains the peripheral data.</returns>
+      <param name="location">The location where the data will be stored.</param>
+      <param name="property">The name of the data property.</param>
+      <param name="encoded">true if <paramref name="property" /> is HTML encoded; otherwise, false.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.HasAvailableTabs">
+      <summary>Gets whether there are tabs available on the Server ribbon or not. </summary>
+      <returns>true if there are tabs available on the ribbon; otherwise, false. </returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.HeaderScalingEnabled">
+      <summary>Gets or sets whether the Server ribbon has scaling turned on for the tab headers.</summary>
+      <returns>true if scaling is enabled; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.HeaderScalingScript">
+      <summary>Gets the header scaling .</summary>
+      <returns>A string that contains the ECMAScript used for header scaling.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.IncludeHeaderScalingScript">
+      <summary>Gets or sets if the <see cref="P:Microsoft.Web.CommandUI.Ribbon.HeaderScalingScript" /> is included in the page.</summary>
+      <returns>true if the script should be included; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.InitializationScript">
+      <summary>Gets the script that is used for initializing the Server ribbon when it is minimized.</summary>
+      <returns>The script used for initializing the ribbon.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.InitializationStartScript">
+      <summary>Gets the script that is used to start Server ribbon initialization and attach a server-rendered ribbon.</summary>
+      <returns>The script used to start initialization.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.InitialTabId">
+      <summary>Gets or sets the identifier of the tab that is displayed as selected when the Server ribbon is rendered.</summary>
+      <returns>The specified tab.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.IsTabAvailable(System.String)">
+      <summary>Specifies whether a tab is available or not.</summary>
+      <returns>true if the tab is available; otherwise, false.</returns>
+      <param name="tabId">Unique identifier of the tab to verify availability for. </param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.LoadPostData(System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>Sets the <see cref="P:Microsoft.Web.CommandUI.Ribbon.ActiveTabId" /> if it is within the collection.</summary>
+      <returns>A Booleans that specifies if the data was loaded.</returns>
+      <param name="postDataKey">The key value that specifies the data inside the collection.</param>
+      <param name="postCollection">A collection of data to load.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.MakeContextualGroupInitiallyVisible(System.String,System.String)">
+      <summary>Makes the contextual group that the tab belongs to visible with the same visibility context as the tab was initialized with.</summary>
+      <param name="contextualGroupId">Identifier of the group containing the tab.</param>
+      <param name="visibilityContext">The visibility context to assign.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.MakeTabAvailable(System.String)">
+      <summary>Adds the specified tab to the list of available tabs based on the specified tab identifier.</summary>
+      <param name="tabId">The string identifier of the specified tab.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.MakeTabAvailable(System.String,System.String)">
+      <summary>Adds the specified tab to the list of available tabs based on the specified tab identifier and the visibility context.</summary>
+      <param name="tabId">The string identifier of the specified tab.</param>
+      <param name="visibilityContext">A string representation of the visibility context.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.MergeDataExtensionsIntoDataSourceResult">
+      <summary>Merges the Server ribbon customizations with the results of the query against the data source.</summary>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.Minimized">
+      <summary>Gets or sets whether the Server ribbon is minimized or not.</summary>
+      <returns>true if the ribbon is minimized; otherwise, false.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.NormalizeContextualGroup(System.String,System.String)">
+      <summary>Assigns default values to tabs contained within this contextual group.</summary>
+      <param name="contextualGroupId">Identifier of the contextual group containing the tab.</param>
+      <param name="visibilityContext">The visibility context of the contextual group.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.OnInit(System.EventArgs)">
+      <summary>Raises the <see cref="M:System.Web.UI.WebControls.Init" /> event. </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.PlaceholderElementId">
+      <summary>Gets or sets the element identifier of the Server ribbon control. </summary>
+      <returns>A <see cref="T:System.String" /> representation of the placeholder element identifier.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.RaisePostDataChangedEvent">
+      <summary>Handles the <see cref="M:System.Web.UI.IPostBackDataHandler.RaisePostDataChangedEvent" /> method.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.RegisterDataExtension(System.Xml.XmlNode,System.String)">
+      <summary>Registers a data extension for the Server ribbon.</summary>
+      <param name="xnExtension">An XML node that contains the ribbon XML to insert into the ribbon.</param>
+      <param name="location">The location inside of the ribbon data where the extension will be loaded.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.Render(System.Web.UI.HtmlTextWriter)">
+      <summary>Renders the Server ribbon in HTML to the current page.</summary>
+      <param name="writer">A <see cref="T:System.Web.UI.HtmlTextWriter" /> object with the ribbon in HTML form. </param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.RootBuildClientScript">
+      <summary>Gets an  string that builds the root of the Server ribbon.</summary>
+      <returns>The ECMAScript that builds the root of the ribbon.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ServerRendered">
+      <summary>Gets or sets a Boolean value that indicates whether this Server ribbon was rendered on the server. </summary>
+      <returns>true if this ribbon is rendered on the server; otherwise, false. </returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ServerRenderedScalingIndex">
+      <summary>Gets or sets the server rendered scaling index. </summary>
+      <returns>The scaling index.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.SetInitialTabId(System.String,System.String)">
+      <summary>An update method that sets the identifier of the tab that will be selected when the page is rendered.</summary>
+      <param name="initialTabId">Identifier of the tab that will be selected.</param>
+      <param name="visibilityContext">Selected tab visibility context.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ShortcutKeyBindings">
+      <summary>Gets or sets the key binding that jumps to the initial tab.</summary>
+      <returns>The shortcut key binding.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ShowJewelId">
+      <summary>Gets or sets the identifier of the Jewel.</summary>
+      <returns>The Jewel identifier.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ShowQATId">
+      <summary>Gets or sets the identifier of the Quick Access Toolbar (QAT).</summary>
+      <returns>The QAT identifier.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.TrimById(System.String)">
+      <summary>Locates a tab by its string identifier and trims it for the current page.</summary>
+      <param name="trimmedId">The string identifier of the tab to be trimmed.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.TrimById(System.String,System.String)">
+      <summary>Locates a tab by identifier and visibility context and trims it for the current page.</summary>
+      <param name="trimmedId">A string that identifies the tab.</param>
+      <param name="visibilityContext">A string representation of the visibility context of the tab.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.Ribbon.ValidateServerRendering">
+      <summary>This object, member, or enumeration is deprecated and is not intended to be used in your code.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.WriteInitializationScript(System.Web.UI.HtmlTextWriter)">
+      <summary>Outputs the <see cref="P:Microsoft.Web.CommandUI.Ribbon.InitializationScript" /> on the page and starts the initialization.</summary>
+      <param name="writer">A <see cref="T:System.Web.UI.HtmlTextWriter" /> object that outputs the script to the page.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.Ribbon.WritePeripheralDiv(System.Web.UI.HtmlTextWriter,System.String)">
+      <summary>Outputs the peripheral content sections to the page.</summary>
+      <param name="writer">A <see cref="T:System.Web.UI.HtmlTextWriter" /> that outputs the peripheral content sections.</param>
+      <param name="location">The location where the peripheral content section is written.</param>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.RibbonDocument">
+      <summary>Represents an XML document by using a tree structure of <see cref="T:Microsoft.Web.CommandUI.DataNode" /> objects that contain references to <see cref="T:System.XML.XmlNode" /> objects. </summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonDocument.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.RibbonDocument" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonDocument.AppendChild(Microsoft.Web.CommandUI.DataNode,System.Boolean)">
+      <summary>Appends a node to the tree structure that represents the XML document.</summary>
+      <param name="ribbonNode">The node to be appended to the tree structure that represents the XML document.</param>
+      <param name="bClone">true if the node is to be cloned; otherwise, false.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.RibbonDocument.DocumentElement">
+      <summary>Gets the root element of the XML document.</summary>
+      <returns>The root element of the XML document.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonDocument.Save(System.IO.TextWriter)">
+      <summary>Saves the document to the specified <see cref="T:System.IO.TextWriter" /> object.</summary>
+      <param name="w">The <see cref="T:System.IO.TextWriter" /> where the document is written.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonDocument.SelectNodes(System.String)">
+      <summary>Selects a set of nodes based on the specified XPath expression.</summary>
+      <returns>A collection of nodes within the document.</returns>
+      <param name="xpath">An XPath expression that selects XML nodes.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonDocument.SelectSingleNode(System.String)">
+      <summary>Selects a single node based on the specified XPath expression.</summary>
+      <returns>A node within the document.</returns>
+      <param name="xpath">An XPath expression that selects a single XML node.</param>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.RibbonNodeList">
+      <summary>Represents a collection of the Server ribbon<see cref="T:Microsoft.Web.CommandUI.DataNode" /> objects.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonNodeList.#ctor(System.Collections.Generic.IList{Microsoft.Web.CommandUI.DataNode})">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.RibbonNodeList" /> class.</summary>
+      <param name="ribbonNodeList">The nodes used to create the Server ribbon node list.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.RibbonNodeList.Count">
+      <summary>Gets the number of nodes in the list.</summary>
+      <returns>A <see cref="T:System.Int32" /> that contains the count of nodes in the list.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonNodeList.CreateList(System.Xml.XmlNodeList)">
+      <summary>Creates a Server ribbon node list from an XML node list.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.RibbonNodeList" /> that contains the specified XML node list.</returns>
+      <param name="list">The XML node list.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonNodeList.GetEnumerator">
+      <summary>Creates an enumerator into the Server ribbon node list.</summary>
+      <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that enumerates a ribbon node list.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.RibbonNodeList.Item(System.Int32)">
+      <summary>Gets the specified node from the list</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.DataNode" /> that contains the specified node.</returns>
+      <param name="index">The node to retrieve from the list.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonNodeList.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Creates an enumerator into the Server ribbon node list.</summary>
+      <returns>A <see cref="T:System.Collections.IEnumerator" /> that enumerates a ribbon node list.</returns>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.RibbonPeripheralContent">
+      <summary>A container for content to be shown in one of the peripheral content sections of the Server ribbon.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonPeripheralContent.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.RibbonPeripheralContent" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.RibbonPeripheralContent.Location">
+      <summary>Gets or sets the location where the <see cref="T:Microsoft.Web.CommandUI.RibbonPeripheralContent" /> will render on the page.</summary>
+      <returns>A <see cref="T:System.String" /> indicating the page location.</returns>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.RibbonPeripheralContent.Render(System.Web.UI.HtmlTextWriter)">
+      <summary>Renders any controls that are in the peripheral content area.</summary>
+      <param name="writer">A <see cref="T:System.Web.UI.HtmlTextWriter" /> where the controls will render.</param>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.RibbonPeripheralSection">
+      <summary>Contains valid section identifiers for Server ribbon peripheral content.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.RibbonPeripheralSection.QATRowCenter">
+      <summary>Contains the string QATRowCenter. This corresponds to the center of the row that contains the Quick Access Toolbar.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.RibbonPeripheralSection.QATRowRight">
+      <summary>Contains the string QATRowRight. This corresponds to the right of the tab title row that contains the Quick Access Toolbar.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.RibbonPeripheralSection.TabRowLeft">
+      <summary>Contains the string TabRowLeft. This corresponds to the left of the tab titles.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.RibbonPeripheralSection.TabRowRight">
+      <summary>Contains the string TabRowRight. This corresponds to the right of the tab titles.</summary>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.UIQuery">
+      <summary>Specifies the parameters of a query for data that specifies a user interface (UI), for example, a ribbon or ribbon tab.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.UIQuery.#ctor(Microsoft.Web.CommandUI.UIQueryType,System.String,System.UInt32,Microsoft.Web.CommandUI.UIQueryResultFormat)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.UIQuery" /> class with the given type, identifier, and format parameter data.</summary>
+      <param name="type">A <see cref="T:Microsoft.Web.CommandUI.UIQueryType" /> object that represents the requested type.</param>
+      <param name="id">A <see cref="T:System.String" /> that contains the identifier for the requested data.</param>
+      <param name="lcid">An unsigned 32-bit integer that specifies the language and culture in which the results are to be retrieved.</param>
+      <param name="resultFormat">A <see cref="T:Microsoft.Web.CommandUI.UIQueryResultFormat" /> object that specifies the format in which the results of the query are to be returned.</param>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.UIQuery.AddRibbonTemplateInclude(System.String)">
+      <summary>Adds a scaling template to the query output.</summary>
+      <param name="templateId">The identifier of the scaling template to include in the query results.</param>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.UIQuery.Id">
+      <summary>Gets the ID that is used to run the query.</summary>
+      <returns>A string that contains the ID.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.UIQuery.Lcid">
+      <summary>Gets the locale identifier for the query.</summary>
+      <returns>A <see cref="T:System.UInt32" /> that represents the locale identifier.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.UIQuery.ResultFormat">
+      <summary>Gets the format of the query results.</summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.UIQueryResultFormat" /> that specifies the format of the query results.</returns>
+    </member>
+    <member name="P:Microsoft.Web.CommandUI.UIQuery.Type">
+      <summary>Gets the type of query being applied to the Server ribbon. </summary>
+      <returns>A <see cref="T:Microsoft.Web.CommandUI.UIQueryType" /> that specifies the type of query.</returns>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.UIQueryResultFormat">
+      <summary>Determines the format of the query result.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryResultFormat.JSON">
+      <summary>Format the query result in JavaScript Object Notation (JSON).</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryResultFormat.XML">
+      <summary>Format the query result in XML.</summary>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.UIQueryType">
+      <summary>Represents the type of query that is being made for Server ribbon data. This enumeration is used in Microsoft SharePoint Foundation by the commandui.ashx HTTP handler.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryType.None">
+      <summary>The query type is not specified.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryType.All">
+      <summary>Retrieve all the Server ribbon XML.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryType.RibbonVisibleTabDeep">
+      <summary>Perform a shallow retrieval of all Server ribbon tabs. This type of retrieval includes the ribbon tab node and attributes but does not include the child nodes of the ribbon tab node. This type of retrieval also includes the deep retrieval of a single tab node.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryType.RibbonShallow">
+      <summary>Perform a shallow retrieval of all the Server ribbon tabs. This type of retrieval includes only the tab node and its attributes; no child nodes are included.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryType.RibbonTab">
+      <summary>Perform a deep retrieval of one Server ribbon tab. This type of retrieval includes the child nodes in addition to the tab node and its attributes.</summary>
+    </member>
+    <member name="F:Microsoft.Web.CommandUI.UIQueryType.Root">
+      <summary>Retrieve a complete "root". Because, in Microsoft SharePoint Foundation, the only root that is used is the Server ribbon, this type of query retrieves the entire ribbon node including all of its ancestors, as well as all the nodes beneath it. You still have to set the ID to the Id attribute of the root node. So, the Ribbon node Id in SharePoint Foundation is set to "Ribbon".</summary>
+    </member>
+    <member name="T:Microsoft.Web.CommandUI.XMLToJSONConverter">
+      <summary>Provides a method to convert an XML document to JavaScript Object Notation (JSON).</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.XMLToJSONConverter.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Web.CommandUI.XMLToJSONConverter" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Web.CommandUI.XMLToJSONConverter.Write(System.Xml.XmlDocument,System.IO.TextWriter)">
+      <summary>Writes an XML node as JavaScript Object Notation (JSON).</summary>
+      <param name="document">The XML document that is converted to JSON.</param>
+      <param name="writer">The <see cref="T:System.IO.TextWriter" /> where the conversion results are written.</param>
+    </member>
+  </members>
+</doc>
