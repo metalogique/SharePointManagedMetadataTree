@@ -3,9 +3,7 @@
     <xsl:output method="html" indent="yes" omit-xml-declaration="yes" />
   <xsl:template name="global" match="//global">
     <xsl:param name="d" />
-      <xsl:for-each select="listID">
-        <xsl:call-template name="listIdTemplate" />
-      </xsl:for-each>
+      <xsl:call-template name="listIdTemplate" />
       <xsl:for-each select="termset">
         <xsl:call-template name="terms" />
       </xsl:for-each>
