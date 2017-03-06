@@ -1,2 +1,3 @@
-# Prerequisites
-*.d
+# Untracked files:
+bin/*
+obj/*
