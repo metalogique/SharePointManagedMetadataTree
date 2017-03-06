@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Office.Server.Search.Connector</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer">
+      <summary>Performs security trimming for search results from Line of Business Data content sources. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer" /> class. </summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer.CheckAccess(System.Collections.Generic.IList{System.String},System.Collections.Generic.IDictionary{System.String,System.Object},System.Security.Principal.IIdentity)">
+      <summary>Performs custom security trimming of search results.</summary>
+      <returns>The results of the CheckAccess method.</returns>
+      <param name="crawlUrls">The collection of search results URL strings.</param>
+      <param name="properties">The collection of configuration properties registered for the security trimmer.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer.Initialize(System.Collections.Specialized.NameValueCollection,Microsoft.Office.Server.Search.Administration.SearchServiceApplication)">
+      <summary>Initializes the <see cref="T:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer" /> object.</summary>
+      <param name="properties">Name value collection of initialization properties.</param>
+      <param name="searchApplication">The Search service application.</param>
+    </member>
+    <member name="F:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer.MaxAccessChecksPerSessionPropertyName">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.BdcSecurityTrimmer.ParseUri(System.String,Microsoft.BusinessData.MetadataModel.IEntity@,Microsoft.BusinessData.Runtime.Identity@,Microsoft.BusinessData.MetadataModel.ILobSystemInstance@)">
+      <summary>Interprets the search result URL.</summary>
+      <param name="crawlUri">The search result's URL.</param>
+      <param name="entity">The external item.</param>
+      <param name="identity">The identifier for the external item.</param>
+      <param name="lsi">The external system instance.</param>
+    </member>
+    <member name="T:Microsoft.Office.Server.Search.Connector.BDC.ILobUri">
+      <summary>Defines how to map the content item URL passed from the search system to the external system object.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.Catalog">
+      <summary>Gets the catalog for the external system object.</summary>
+      <returns>The catalog for the external system object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.Entity">
+      <summary>Gets the external content type for the content item.</summary>
+      <returns>The external content type for the content item.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.Identity">
+      <summary>Gets the identifier for the content item.</summary>
+      <returns>The identifier for the content item.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.Initialize(Microsoft.Office.Server.Search.Connector.IConnectionContext)">
+      <summary>Initializes the class to map the content item URL.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.LobSystem">
+      <summary>Gets the external system object for the content item.</summary>
+      <returns>The external system object for the content item.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.LobSystemInstance">
+      <summary>Gets the external system instance for the content item.</summary>
+      <returns>The external system instance for the content item.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.PartitionId">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.ILobUri.SourceUri">
+      <summary>Gets the content item URL being mapped.</summary>
+      <returns>The content item URL.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer">
+      <summary>Defines how to map the external item to the URL used by the search system.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetAccessUri(Microsoft.BusinessData.MetadataModel.IEntity,Microsoft.BusinessData.MetadataModel.ILobSystemInstance)">
+      <summary>Maps the specified external item and external system instance to the URL used by the search system.</summary>
+      <returns>The content item URL. </returns>
+      <param name="entity">The external item.</param>
+      <param name="lobSystemInstance">The external system instance.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetAccessUri(Microsoft.BusinessData.MetadataModel.ILobSystem)">
+      <summary>Maps the specified external system to the URL used by the search system.</summary>
+      <returns>The content item URL.</returns>
+      <param name="lobSystem">The external system.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetAccessUri(Microsoft.BusinessData.MetadataModel.ILobSystemInstance)">
+      <summary>Maps the specified external system instance to the URL used by the search system.</summary>
+      <returns>The content item URL.</returns>
+      <param name="lobSystemInstance">The external system instance.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetAccessUri(Microsoft.BusinessData.Runtime.IEntityInstance)">
+      <summary>Maps the specified external item to the URL used by the search system.</summary>
+      <returns>The content item URL.</returns>
+      <param name="entityInstance">The external item.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetAccessUri(Microsoft.BusinessData.Runtime.IEntityInstance,Microsoft.BusinessData.Runtime.IEntityInstance)">
+      <summary>Maps the specified external item to the content item URL used by the search system. </summary>
+      <returns>The content item URL.</returns>
+      <param name="entityInstance">The external item.</param>
+      <param name="parentEntityInstance">The parent external item.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetDisplayUri(Microsoft.BusinessData.MetadataModel.IEntity,Microsoft.BusinessData.MetadataModel.ILobSystemInstance)">
+      <summary>Maps the specified external item and external system instance to the display URL used by the search system. </summary>
+      <returns>The URL displayed for the external item in the search results.</returns>
+      <param name="entity">The external item.</param>
+      <param name="lobSystemInstance">The external system instance.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetDisplayUri(Microsoft.BusinessData.MetadataModel.ILobSystem)">
+      <summary>Maps the specified external system to the display URL used by the search system. </summary>
+      <returns>The URL displayed in the search results.</returns>
+      <param name="lobSystem">The external system.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetDisplayUri(Microsoft.BusinessData.MetadataModel.ILobSystemInstance)">
+      <summary>Maps the specified external system instance to the display URL used by the search system. </summary>
+      <returns>The URL displayed in the search results.</returns>
+      <param name="lobSystemInstance">The external system instance.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetDisplayUri(Microsoft.BusinessData.Runtime.IEntityInstance,Microsoft.BusinessData.Runtime.IEntityInstance)">
+      <summary>Maps the specified external item to the display URL used by the search system. </summary>
+      <returns>The URL displayed in the search results.</returns>
+      <param name="entityInstance">The external item.</param>
+      <param name="parentEntityInstance">The parent external item.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.GetDisplayUri(Microsoft.BusinessData.Runtime.IEntityInstance,System.String)">
+      <summary>Maps the specified external item to the display URL used by the search system.</summary>
+      <returns>The URL displayed in the search results.</returns>
+      <param name="entityInstance">The external item.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.Initialize(System.Uri)">
+      <summary>Initializes the <see cref="T:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer" /> class.</summary>
+      <param name="uri">A string specifying the URL.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.PartitionId">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.INamingContainer.PropertySet">
+      <summary>Sets the crawled property category for the properties from the external content source.</summary>
+      <returns>
+The crawled property category.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.Search.Connector.BDC.LobUri">
+      <summary>Defines how to map the content item URL passed from the search system to the external system object.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.LobUri.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.Search.Connector.BDC.LobUri" /> class.</summary>
+      <param name="protocol">A string specifying the protocol for the URL.</param>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.Catalog">
+      <summary>Gets the catalog for the external system object.</summary>
+      <returns>The catalog for the external system object.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.Entity">
+      <summary>Gets the external content type for the content item.</summary>
+      <returns>The external content type.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.Identity">
+      <summary>Gets the identifier for the content item.</summary>
+      <returns>The identifier of the content item.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.LobUri.Initialize(Microsoft.Office.Server.Search.Connector.IConnectionContext)">
+      <summary>Initializes the class to map the content item URL.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.LobSystem">
+      <summary>Gets the external system object for the content item.</summary>
+      <returns>The external system object for the content item.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.LobSystemInstance">
+      <summary>Gets the external system instance for the content item.</summary>
+      <returns>The external system instance for the content item.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.PartitionId">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.LobUri.SourceUri">
+      <summary>Gets the content item URL being mapped.</summary>
+      <returns>The content item URL.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.#ctor">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.DeleteCredentials(System.String)">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.GetCredentials(System.String)">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.GetCredentialsUsingTicket(System.String,System.String)">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.GetRestrictedCredentials(System.String)">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.IssueTicket">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.SearchSSOProvider.ProviderInformation">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1">
+      <summary>Binds to a proxy class for accessing the repository and executes methods by reflectively invoking the proxy.</summary>
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Server.Search.Connector.StructuredRepositorySystemUtility" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.CreateEntityInstanceDataEnumerator(System.Object,Microsoft.BusinessData.Runtime.ISharedEntityState)">
+      <summary>Converts line-of-business (LOB) data stream into an enumerator of raw AdapterObject objects.</summary>
+      <param name="rawStream">LOB data stream to convert.</param>
+      <param name="sharedEntityState">Shared state of external item that are going to be generated from the returned enumeration.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.CreateProxy">
+      <summary>Creates an instance of the proxy.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.DefaultConnectionManager">
+      <summary>Gets the connection manager instance that should be used with this system utility by default.</summary>
+      <returns>An object representing the connection manager instance.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.DefaultTypeReflector">
+      <summary>Gets the ITypeReflector instance that should be used with this system utility by default.</summary>
+      <returns>The type reflector to use with this system utility.</returns>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.DisposeProxy(`0)">
+      <summary>Disposes the proxy.</summary>
+      <param name="proxy">The proxy to dispose.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.ExecuteStatic(Microsoft.BusinessData.MetadataModel.IMethodInstance,Microsoft.BusinessData.MetadataModel.ILobSystemInstance,System.Object[],Microsoft.BusinessData.Runtime.IExecutionContext)">
+      <summary>Executes a MethodInstance in the model against the specified external system instance with given parameters.</summary>
+      <param name="methodInstance">The method instance being executed.</param>
+      <param name="lobSystemInstance">The external system instance which the method instance is being executed against.</param>
+      <param name="args">Parameters of the method. The size of the parameter array is equal to the number of parameter objects in the method, and the values are going to be passed in order. Out and return parameters will be a null reference (Nothing in Visual Basic).</param>
+      <param name="context">ExecutionContext in which this execution is happening. This value will be null if ExecutionContext is not created.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.SetCertificates(`0,System.Security.Cryptography.X509Certificates.X509CertificateCollection)">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.SetConnectionString(`0,System.String)">
+      <summary>Sets connection string for the proxy.</summary>
+      <param name="proxy">The proxy to set the connection string for.</param>
+      <param name="connectionString">The connection string for the proxy.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.SetCookies(`0,System.Net.CookieContainer)">
+      <summary>Not implemented in this version.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.SetCredentials(`0,System.String,System.String)">
+      <summary>Sets the user name and password for the proxy.</summary>
+      <param name="proxy">The proxy to set the credentials for.</param>
+      <param name="userName">The user name to set on the proxy.</param>
+      <param name="passWord">The password to set on the proxy.</param>
+    </member>
+    <member name="M:Microsoft.Office.Server.Search.Connector.BDC.StructuredRepositorySystemUtility`1.SetProxyServerInfo(`0,System.String,System.String,System.Boolean)">
+      <summary>Specifies proxy server information for the proxy.</summary>
+      <param name="proxy">The proxy to set the proxy server information for.</param>
+      <param name="proxyServerName">The proxy server name for the proxy.</param>
+      <param name="bypassList">The list of addresses that bypass the proxy server.</param>
+      <param name="bypassProxyForLocalAddress">Indicates whether local addresses should bypass the proxy server.  true for local addresses to bypass the proxy server; otherwise, false.</param>
+    </member>
+  </members>
+</doc>

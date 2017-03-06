@@ -176,10 +176,8 @@ namespace Taxonomy_WebPart.Taxonomy_WebPart
             // start processing
             try
             {
-
                 SPWeb myWeb = SPContext.Current.Site.OpenWeb(WebUrl);
                 SPList myList = myWeb.Lists[_ListName];
-
                 SPQuery q = new SPQuery();
                 q.Folder = myList.RootFolder;
                 q.Query = "<Where><IsNotNull><FieldRef Name='" + _FieldName + "'></FieldRef></IsNotNull></Where>";
@@ -234,14 +232,16 @@ namespace Taxonomy_WebPart.Taxonomy_WebPart
 
                 TaxonomyField metaDataField = (TaxonomyField)myList.Fields.GetField(_FieldName);
 
-
                 TaxonomySession session = new TaxonomySession(SPContext.Current.Site);
 
                 TermStore termStore = session.TermStores[0];
                 TermSet termSet = termStore.GetTermSet(metaDataField.TermSetId);
 
                 // get our term hierarchy
-                xmlOutput += "<termset><name>" + termSet.Name + "</name><terms>";
+                xmlOutput += "<termset>";
+                xmlOutput += "<name>" + termSet.Name + "</name>";
+                xmlOutput += "<listid>" + myList.ID + "</listid>";
+                xmlOutput += "<terms>";
                 GetRootTerms(termSet);
                 xmlOutput += "</terms></termset>";
 

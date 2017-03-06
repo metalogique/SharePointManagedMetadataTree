@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Office.Excel.Server.WebServices</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.CalculateType">
+      <summary>Defines the different types of workbook calculation.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CalculateType.Recalculate">
+      <summary>Calculates only formulas that have been changed by some action.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CalculateType.CalculateFull">
+      <summary>Calculates all formulas, but without rebuilding the dependency tree.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.CellError">
+      <summary>Defines the supported cell error values that can be returned in an object during a call to the methods <see cref="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetRange(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.RangeCoordinates,System.Boolean,Microsoft.Office.Excel.Server.WebServices.Status[]@)" /> and <see cref="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetCell(System.String,System.String,System.Int32,System.Int32,System.Boolean,Microsoft.Office.Excel.Server.WebServices.Status[]@)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.Div0">
+      <summary>Equivalent to Excel cell value #DIV/0!</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.NA">
+      <summary>Equivalent to Excel cell value #N/A</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.Name">
+      <summary>Equivalent to Excel cell value #NAME?</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.Null">
+      <summary>Equivalent to Excel cell value #NULL!</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.Num">
+      <summary>Equivalent to Excel cell value #NUM!</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.Ref">
+      <summary>Equivalent to Excel cell value #REF!</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.CellError.Value">
+      <summary>Equivalent to Excel cell value #VALUE!</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.ExcelService">
+      <summary>Excel Web Services is exposed as a web service.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.ExcelService" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.Calculate(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.RangeCoordinates,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Calculates formulas in the open workbook, or in a range within the workbook, using numeric range coordinates.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeCoordinates">The four integer coordinates used to select a contiguous range.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.CalculateA1(System.String,System.String,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Calculates formulas in the open workbook, or in a range within the workbook, using the Excel "A1" range specification.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeName">A range name can be a range reference, a named range, or a named data object. A <paramref name="rangeName" /> string can contain a sheet name; for example, "Sheet1!A1:G17".</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.CalculateWorkbook(System.String,Microsoft.Office.Excel.Server.WebServices.CalculateType,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Calculates the entire open workbook, using one of the supported calculation methods.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="calculateType">Defines the different types (that is, CalculateFull and Recalculate) of workbook calculation.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.CancelRequest(System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Cancels the most recent request if it is still pending in the session.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.CloseWorkbook(System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Closes the session and the workbook that is currently open in that session.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.Dispose(System.Boolean)"></member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetApiVersion(Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets the Excel Web Services version information.</summary>
+      <returns>The version string of Excel Web Services.</returns>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetCell(System.String,System.String,System.Int32,System.Int32,System.Boolean,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets a calculated value from a cell in the open workbook, using numeric cell coordinates.</summary>
+      <returns>Value of the requested cell.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="row">Cell's row, 0-based.</param>
+      <param name="column">Cell's column, 0-based.</param>
+      <param name="formatted">true returns formatted strings.false returns raw values.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetCellA1(System.String,System.String,System.String,System.Boolean,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets a calculated value from a cell in the open workbook, using the Excel "A1" range specification.</summary>
+      <returns>The value from a single cell, using a range name string to select the cell.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeName">A range name can be a range reference, a named range, or a named data object. A <paramref name="rangeName" /> string can contain a sheet name; for example, "Sheet1!A1:G17".</param>
+      <param name="formatted">true returns formatted strings.false returns raw values.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetChartImageUrl(System.String,Microsoft.Office.Excel.Server.WebServices.Size,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets a URL value to the chart or PivotChart image file in a workbook.</summary>
+      <returns>The URL <see cref="T:System.String" /> value to the chart or PivotChart file.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="size">The height and width of the requested image. If null (0) or if both the height and width are equal to -1, the original image (default size) is returned.</param>
+      <param name="chartName">The defined name of a chart or PivotChart in the workbook.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetPublishedItemNames(System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets a list of published items in a workbook.   </summary>
+      <returns>The  <see cref="T:Microsoft.Office.Excel.Server.WebServices.WorkbookItem" /> in the workbook.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="status">The alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetRange(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.RangeCoordinates,System.Boolean,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets calculated values from a range in the open workbook, using numeric range coordinates.</summary>
+      <returns>An array of values from a range of cells, using range coordinates to select the range.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeCoordinates">The four integer coordinates used to select a contiguous range.</param>
+      <param name="formatted">true returns formatted strings.false returns raw values.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetRangeA1(System.String,System.String,System.String,System.Boolean,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets calculated values from a range in the open workbook, using the Excel "A1" range specification.</summary>
+      <returns>Array of values for the requested range.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeName">A range name can be a range reference, a named range, or a named data object. A <paramref name="rangeName" /> string can contain a sheet name; for example, "Sheet1!A1:G17".</param>
+      <param name="formatted">true to return formatted strings.false to return raw values.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetSessionInformation(System.String,System.String@,System.String@,System.String@,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets the run-time properties for the Excel Calculation Services session.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="serverVersion">The Excel Calculation Services version string.</param>
+      <param name="uiCultureNameUsed">The UI culture used in the session. Examples: en-US, en-GB, fr-FR, ko-KR, ms-MY, ur, hu, ja-JP. Use Empty string or Null when not applicable.</param>
+      <param name="dataCultureNameUsed">The data culture used in the session. Examples: en-US, en-GB, fr-FR, ko-KR, ms-MY, ur, hu, ja-JP. Use Empty string or Null when not applicable.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetSheetNames(System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets a list of all of the sheet names present in a workbook.  </summary>
+      <returns>The <see cref="T:Microsoft.Office.Excel.Server.WebServices.SheetInfo" /> information about a sheet in a workbook..</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.GetWorkbook(System.String,Microsoft.Office.Excel.Server.WebServices.WorkbookType,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Gets the contents of the entire open workbook.</summary>
+      <returns>The entire workbook loaded in the session.</returns>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="workbookType">Defines the different modes (Full Workbook, FullSnapshot, and PublishedItemsSnapshot) used to get a workbook. Also see the WorkbookType enumerator.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.NewWorkbook(System.String,System.String,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Creates a new session that does not use a pre-existing workbook.</summary>
+      <returns>The <paramref name="sessionId" /><see cref="T:System.String" /> value.</returns>
+      <param name="path">The location of the workbook file to open. Must be an absolute path.Maximum size is 4096 characters.</param>
+      <param name="uiCultureName">Follows the Microsoft .NET Framework standard of naming cultures as expressed in the System.Globalization.CultureInfo namespace. Examples of UI culture names: en-US, en-GB, fr-FR, de-DE, ka, ko-KR, ja-JP, hi, , zh-CHS. Use Empty string or Null when not applicable.</param>
+      <param name="dataCultureName">Follows the Microsoft .NET Framework standard of naming cultures as expressed in the System.Globalization.CultureInfo namespace. Examples of UI culture names: en-US, en-GB, fr-FR, de-DE, ka, ko-KR, ja-JP, hi, , zh-CHS. Use Empty string or Null when not applicable.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.OpenWorkbook(System.String,System.String,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Opens an Excel workbook file in a new Excel Calculation Services session.</summary>
+      <returns>The <paramref name="sessionId" /> string value.</returns>
+      <param name="workbookPath">The location of the workbook file to open.Maximum size is 4096 characters.</param>
+      <param name="uiCultureName">Follows the Microsoft .NET Framework standard of naming cultures as expressed in the System.Globalization.CultureInfo namespace. Examples of UI culture names: en-US, en-GB, fr-FR, de-DE, ka, ko-KR, ja-JP, hi, , zh-CHS. Use Empty string or Null when not applicable.</param>
+      <param name="dataCultureName">Follows the Microsoft .NET Framework standard of naming cultures as expressed in the System.Globalization.CultureInfo namespace. Examples of UI culture names: en-US, en-GB, fr-FR, de-DE, ka, ko-KR, ja-JP, hi, zh-CHS. Use Empty string or Null when not applicable.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.OpenWorkbookForEditing(System.String,System.String,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Opens a workbook for editing.</summary>
+      <returns>The <paramref name="sessionId " /><see cref="T:System.String" /> value.</returns>
+      <param name="workbookPath">The location of the workbook file to open. Must be an absolute path. Maximum size is 4096 characters.</param>
+      <param name="uiCultureName">Follows the Microsoft .NET Framework standard of naming cultures as expressed in the System.Globalization.CultureInfo namespace. Examples of UI culture names: en-US, en-GB, fr-FR, de-DE, ka, ko-KR, ja-JP, hi, , zh-CHS. Use Empty string or Null when not applicable.</param>
+      <param name="dataCultureName">Follows the Microsoft .NET Framework standard of naming cultures as expressed in the System.Globalization.CultureInfo namespace. Examples of UI culture names: en-US, en-GB, fr-FR, de-DE, ka, ko-KR, ja-JP, hi, , zh-CHS. Use Empty string or Null when not applicable.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.Refresh(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Retrieves updated data from external data sources for the open workbook.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="connectionName">The name of the connection entry in the Excel workbook. To use all available connections, pass in Empty string or Null.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SaveWorkbook(System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Saves a workbook in the original format (.xlsx, .xlsb, .xlsm).  </summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SaveWorkbookCopy(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.WorkbookType,Microsoft.Office.Excel.Server.WebServices.SaveOptions,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Saves a workbook using a different file name and/or to a different SharePoint document library. </summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="workbookPath">The location of the workbook file to open. Must be an absolute path. Maximum size is 4096 characters.</param>
+      <param name="workbookType">Defines the different modes (Full Workbook, FullSnapshot, and PublishedItemsSnapshot) used to get a workbook. Also see the <see cref="T:Microsoft.Office.Excel.Server.WebServices.WorkbookType" />enumerator.</param>
+      <param name="saveOptions">Specifies whether to overwrite an existing file. If true to overwrite; otherwise false.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SetCalculationOptions(System.String,Microsoft.Office.Excel.Server.WebServices.WorkbookCalculation,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Changes the calculation mode setting for workbooks.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="calcType">The <see cref="T:CalculationOptions" /> type.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SetCell(System.String,System.String,System.Int32,System.Int32,System.Object,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Sets a value or formula into a cell.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="row">Cell's row, 0-based.</param>
+      <param name="column">Cell's column, 0-based.</param>
+      <param name="cellValue">Value for the cell being set.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SetCellA1(System.String,System.String,System.String,System.Object,Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Sets a value or formula into a cell in the open workbook, using the Excel "A1" range specification.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeName">A range name can be a range reference, a named range, or a named data object. A <paramref name="rangeName" /> string can contain a sheet name; for example, "Sheet1!A1:G17".</param>
+      <param name="cellValue">Value for the cell being set.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SetParameters(System.String,Microsoft.Office.Excel.Server.WebServices.ParameterInfo[],Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Sets multiple published parameters with a single Web Service call.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="parameters">An array of<see cref="T:Microsoft.Office.Excel.Server.WebServices.ParameterInfo" /> class.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SetRange(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.RangeCoordinates,System.Object[],Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Sets values or formulae into a range, using numeric range coordinates.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeCoordinates">The four integer coordinates used to select a contiguous range.</param>
+      <param name="rangeValues">Array of values for the range being set.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.SetRangeA1(System.String,System.String,System.String,System.Object[],Microsoft.Office.Excel.Server.WebServices.Status[]@)">
+      <summary>Sets values or formulae into a range using the Excel "A1" range specification.</summary>
+      <param name="sessionId">The Excel Web Services session ID.</param>
+      <param name="sheetName">The name of the sheet that you want to reference. Sheet name length is limited to 31 characters.</param>
+      <param name="rangeName">A range name can be a range reference, a named range, or a named data object. A <paramref name="rangeName" /> string can contain a sheet name; for example, "Sheet1!A1:G17".</param>
+      <param name="rangeValues">Array of values for the range being set.</param>
+      <param name="status">Alert information.</param>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.ItemType">
+      <summary>Indicates the types of the returned items.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.ItemType.Chart">
+      <summary>Indicates the returned items are chart. All charts are supported, including PivotChart.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.ItemType.PivotTable">
+      <summary>Indicates the returned items are PivotTables.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.ItemType.Table">
+      <summary>Indicates the returned items are tables.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.ItemType.NamedRange">
+      <summary>Indicates the returned items are named ranges.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.ParameterInfo">
+      <summary>Gets or sets the name and values of a parameter.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ParameterInfo.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.ParameterInfo" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.ParameterInfo.#ctor(System.String,System.String[])">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.ParameterInfo" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.ParameterInfo.Name">
+      <summary>Gets or sets the defined name of the parameter.</summary>
+      <returns>The <see cref="T:System.String" /> name of the parameter.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.ParameterInfo.Values">
+      <summary>Gets or sets the values of a parameter.</summary>
+      <returns>The <see cref="T:System.String" /> value of the parameter.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates">
+      <summary>The four integer coordinates used to select a contiguous range.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates.Column">
+      <summary>Gets or sets the left column (0-based).</summary>
+      <returns>The left column.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates.Height">
+      <summary>Gets or sets the number of rows.</summary>
+      <returns>The corresponding number of rows.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates.Row">
+      <summary>Gets or sets the top row (0-based).</summary>
+      <returns>The top row.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.RangeCoordinates.Width">
+      <summary>Gets or sets the number of columns.</summary>
+      <returns>The corresponding number of columns.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.SaveOptions">
+      <summary>Specifies whether to overwrite an existing, unlocked file.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SaveOptions.None">
+      <summary>To be specified if no other enumerator option is specified.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SaveOptions.AllowOverwrite">
+      <summary>If this enumerator is specified, the existing, unlocked file is overwritten. If this enumerator is not specified, the existing file will not be overwritten. The caller must have sufficient permission to overwrite the file.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.SheetInfo">
+      <summary>Contains information about a sheet in a workbook.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.SheetInfo.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.SheetInfo" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.SheetInfo.#ctor(System.String,Microsoft.Office.Excel.Server.WebServices.SheetType,Microsoft.Office.Excel.Server.WebServices.SheetVisibility)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.SheetInfo" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.SheetInfo.Name">
+      <summary>Gets or sets the name of the sheet.</summary>
+      <returns>The <see cref="T:System.String" /> value of the name of the sheet.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.SheetInfo.Type">
+      <summary>Gets or sets the type of sheet.</summary>
+      <returns>The <see cref="T:Microsoft.Office.Excel.Server.WebServices.SheetType" /> of  sheet.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.SheetInfo.Visibility">
+      <summary>Gets or sets whether the sheet is visible.</summary>
+      <returns>The <see cref="T:Microsoft.Office.Excel.Server.WebServices.SheetVisibility" /> of the sheet.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.SheetType">
+      <summary>Indicates the type of sheet that is returned.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SheetType.Worksheet">
+      <summary>The returned sheet is a worksheet.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SheetType.Chartsheet">
+      <summary>The returned sheet is a chart sheet.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.SheetVisibility">
+      <summary>Indicates whether the returned sheets are visible.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SheetVisibility.Visible">
+      <summary>The sheet is visible in the Excel Web Access Web Part.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SheetVisibility.Hidden">
+      <summary>The sheet is not visible in the Excel Web Access Web Part.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.SheetVisibility.VeryHidden">
+      <summary>The sheet is not visible in the Excel Web Access Web Part, corresponding to the VeryHidden enumerator in the Excel client object model.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.Size">
+      <summary>Defines the width and height of the chart image.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.Size.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.Size" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.Size.Height">
+      <summary>Defines the height of the chart in pixels.</summary>
+      <returns>Returns <see cref="T:System.Int32" />.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.Size.Width">
+      <summary>Defines the width of the chart in pixels.</summary>
+      <returns>Returns <see cref="T:System.Int32" />.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.Status">
+      <summary>Represents alert information.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.Status.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.Status" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.Status.Message">
+      <summary>Gets or sets a message that describes the current exception.</summary>
+      <returns>A string containing the error message that explains the reason for the exception, or an empty string ("").</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.Status.Name">
+      <summary>Gets or sets the status message code.</summary>
+      <returns>A string containing the message code.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.Status.Severity">
+      <summary>Gets or sets the severity of an error message. </summary>
+      <returns>A string containing the severity value, which could be an error, a warning, or information.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.TypeExporter">
+      <summary>This class and its members are reserved for internal use and are not intended to be used in your code.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.TypeExporter.#ctor">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.TypeExporter.CellError">
+      <summary>This member is reserved for internal use and is not intended to be used directly from your code.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.WorkbookCalculation">
+      <summary>Defines the calculation mode setting for a workbook.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.WorkbookCalculation.Manual">
+      <summary>Disables automatic workbook calculation and requires an explicit call to one of the calculate methods to calculate: <see cref="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.Calculate(System.String,System.String,Microsoft.Office.Excel.Server.WebServices.RangeCoordinates,Microsoft.Office.Excel.Server.WebServices.Status[]@)" />, <see cref="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.CalculateA1(System.String,System.String,System.String,Microsoft.Office.Excel.Server.WebServices.Status[]@)" />, or <see cref="M:Microsoft.Office.Excel.Server.WebServices.ExcelService.CalculateWorkbook(System.String,Microsoft.Office.Excel.Server.WebServices.CalculateType,Microsoft.Office.Excel.Server.WebServices.Status[]@)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.WorkbookCalculation.Automatic">
+      <summary>Calculates the workbook automatically.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.WorkbookCalculation.Semiautomatic">
+      <summary>Calculates the workbook automatically except for data tables.</summary>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.WorkbookItem">
+      <summary>Represents named items in the workbook.</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.WorkbookItem.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.WorkbookItem" /> class.
+</summary>
+    </member>
+    <member name="M:Microsoft.Office.Excel.Server.WebServices.WorkbookItem.#ctor(System.String,Microsoft.Office.Excel.Server.WebServices.ItemType)">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Office.Excel.Server.WebServices.WorkbookItem" /> class.
+</summary>
+      <param name="name">The named item.</param>
+      <param name="type">The type of the returned items.</param>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.WorkbookItem.Name">
+      <summary>Gets or sets the named item.</summary>
+      <returns>The <see cref="T:System.String" /> of the named item.</returns>
+    </member>
+    <member name="P:Microsoft.Office.Excel.Server.WebServices.WorkbookItem.Type">
+      <summary>Gets or sets the type of the returned item.</summary>
+      <returns>The <see cref="T:Microsoft.Office.Excel.Server.WebServices.ItemType" /> of the returned item.</returns>
+    </member>
+    <member name="T:Microsoft.Office.Excel.Server.WebServices.WorkbookType">
+      <summary>Defines the supported workbook types.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.WorkbookType.FullWorkbook">
+      <summary>Returns the entire workbook.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.WorkbookType.FullSnapshot">
+      <summary>Returns a snapshot of the entire file.</summary>
+    </member>
+    <member name="F:Microsoft.Office.Excel.Server.WebServices.WorkbookType.PublishedItemsSnapshot">
+      <summary>Returns a snapshot containing the published sheets or objects in the file.</summary>
+    </member>
+  </members>
+</doc>

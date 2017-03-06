@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="48c1e9c8-0b66-40b2-ab8e-8a6c8b967806" SharePointProductVersion="14.0">
   <Assemblies>
     <Assembly Location="Taxonomy_WebPart.dll" DeploymentTarget="GlobalAssemblyCache">
